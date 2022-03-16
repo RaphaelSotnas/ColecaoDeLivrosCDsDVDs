@@ -22,14 +22,6 @@ namespace ColecaoLivrosCDsDVDs.Models
         public string Email { get; set; }
 
         [Required]
-        public int Telefone { get; set; }
-        public Pessoa(PessoaRequest request)
-        {
-            Email = request.Email;
-            Endereço = request.Endereço;
-            Nome = request.Nome;
-            Sobrenome = request.Sobrenome;
-            Telefone = request.Telefone;
-        }
+        public string Telefone { get; set; }
     }
 }

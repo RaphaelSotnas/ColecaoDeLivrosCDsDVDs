@@ -1,4 +1,5 @@
 ﻿using ColecaoLivrosCDsDVDs.Models;
+using ColecaoLivrosCDsDVDs.Models.Entidades;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,8 +10,10 @@ namespace ColecaoLivrosCDsDVDs.Context
 {
     public class AplicacaoContext : DbContext
     {
-        public DbSet<Pessoa> Pessoa { get; set; }
-        public DbSet<Item> Itens { get; set; }
+        public DbSet<Pessoa> Pessoas { get; set; }
+        public DbSet<Livro> Livros { get; set; }
+        public DbSet<DVD> DVDs { get; set; }
+        public DbSet<CD> CDs { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

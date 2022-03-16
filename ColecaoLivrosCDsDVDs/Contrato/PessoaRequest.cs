@@ -19,6 +19,6 @@ namespace ColecaoLivrosCDsDVDs.Contrato
         public string Email { get; set; }
 
         [Required]
-        public int Telefone { get; set; }
+        public string Telefone { get; set; }
     }
 }
