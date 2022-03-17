@@ -1,3 +1,4 @@
+using ColecaoLivrosCDsDVDs.Context;
 using ColecaoLivrosCDsDVDs.Repository;
 using ColecaoLivrosCDsDVDs.Servico;
 using Microsoft.AspNetCore.Builder;
@@ -27,8 +28,9 @@ namespace ColecaoLivrosCDsDVDs
         {
             services.AddControllersWithViews();
 
-            services.AddScoped<IItensService, ItensService>();
+            services.AddScoped<IPessoaServico, PessoaServico>();
             services.AddScoped<IColecaoRepository, ColecaoRepository>();
+            services.AddScoped<IPessoaContext, PessoaContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -16,5 +16,8 @@ namespace ColecaoLivrosCDsDVDs.Models.Entidades
         public string Cantor { get; set; }
 
         public GeneroMusical GeneroMusical { get; set; }
+
+        public Status Status { get; set; }
+
     }
 }

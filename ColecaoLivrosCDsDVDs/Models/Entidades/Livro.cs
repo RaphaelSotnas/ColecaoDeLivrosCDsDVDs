@@ -16,5 +16,7 @@ namespace ColecaoLivrosCDsDVDs.Models.Entidades
         public Genero Genero { get; set; }
 
         public string Autor { get; set; }
+
+        public Status Status { get; set; }
     }
 }

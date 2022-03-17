@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 
 namespace ColecaoLivrosCDsDVDs.Servico
 {
-    public interface IItensService
+    public interface IPessoaServico
     {
-        public void Emprestar(Pessoa pessoa, Itens itens);
         void CadastrarPessoa(Pessoa pessoa);
+        Pessoa BuscarPessoaPorId(int id);
+        void AtualizarPessoa(Pessoa pessoa);
         public List<Pessoa> ListarPessoas();
+        void ExcluirPessoa(int id);
     }
 }

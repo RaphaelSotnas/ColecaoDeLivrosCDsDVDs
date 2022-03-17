@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace ColecaoLivrosCDsDVDs.Servico
 {
-    public class ItensService : IItensService
+    public class PessoaServico : IPessoaServico
     {
         private readonly IColecaoRepository _colecaoRepository;
-        public ItensService(IColecaoRepository colecaoRepository)
+        public PessoaServico(IColecaoRepository colecaoRepository)
         {
             _colecaoRepository = colecaoRepository;
         }
@@ -27,10 +27,16 @@ namespace ColecaoLivrosCDsDVDs.Servico
                 throw ex;
             }
         }
-
-        public void Emprestar(Pessoa pessoa, Itens Itens)
+        public Pessoa BuscarPessoaPorId(int id)
         {
-            
+            try
+            {
+                return _colecaoRepository.BuscarPessoaPorId(id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public List<Pessoa> ListarPessoas()
@@ -38,6 +44,30 @@ namespace ColecaoLivrosCDsDVDs.Servico
             try 
             {
                 return _colecaoRepository.ListarPessoas();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void AtualizarPessoa(Pessoa pessoa)
+        {
+            try
+            {
+                _colecaoRepository.AtualizarPessoa(pessoa);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void ExcluirPessoa(int id)
+        {
+            try
+            {
+                _colecaoRepository.ExcluirPessoa(id);
             }
             catch (Exception ex)
             {

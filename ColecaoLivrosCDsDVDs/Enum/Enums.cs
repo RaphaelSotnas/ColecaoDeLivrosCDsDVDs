@@ -28,4 +28,10 @@ namespace ColecaoLivrosCDsDVDs.Enum
         Jazz = 6,
         Classica = 7
     }
+
+    public enum Status
+    {
+        Disponivel = 1,
+        Indisponivel = 2,
+    }
 }
