@@ -1,6 +1,10 @@
 using ColecaoLivrosCDsDVDs.Context;
+using ColecaoLivrosCDsDVDs.Context.CdContext;
+using ColecaoLivrosCDsDVDs.Context.LivroContext;
 using ColecaoLivrosCDsDVDs.Repository;
 using ColecaoLivrosCDsDVDs.Servico;
+using ColecaoLivrosCDsDVDs.Servico.CDs;
+using ColecaoLivrosCDsDVDs.Servico.Livros;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,8 +33,12 @@ namespace ColecaoLivrosCDsDVDs
             services.AddControllersWithViews();
 
             services.AddScoped<IPessoaServico, PessoaServico>();
-            services.AddScoped<IColecaoRepository, ColecaoRepository>();
             services.AddScoped<IPessoaContext, PessoaContext>();
+            services.AddScoped<ILivroContext, LivroContext>();
+            services.AddScoped<ILivroServico, LivroServico>();
+            services.AddScoped<ICdContext, CdContext>();
+            services.AddScoped<ICdServico, CdServico>();
+            services.AddTransient<IColecaoRepository, ColecaoRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,4 +1,6 @@
 ﻿using ColecaoLivrosCDsDVDs.Context;
+using ColecaoLivrosCDsDVDs.Context.CdContext;
+using ColecaoLivrosCDsDVDs.Context.LivroContext;
 using ColecaoLivrosCDsDVDs.Models;
 using ColecaoLivrosCDsDVDs.Models.Entidades;
 using System;
@@ -11,16 +13,25 @@ namespace ColecaoLivrosCDsDVDs.Repository
     public class ColecaoRepository : IColecaoRepository
     {
         private readonly IPessoaContext _pessoaContext;
-        public ColecaoRepository(IPessoaContext pessoaContext)
+        private readonly ILivroContext _livroContext;
+        private readonly ICdContext _cdContext;
+        public ColecaoRepository
+            (IPessoaContext pessoaContext,
+            ILivroContext livroContext,
+            ICdContext cdContext
+            )
         {
             _pessoaContext = pessoaContext;
+            _livroContext = livroContext;
+            _cdContext = cdContext;
         }
+
+        #region Pessoa
 
         public void CadastrarPessoa(Pessoa pessoa)
         {
             _pessoaContext.CadastrarPessoa(pessoa);
         }
-
 
         public List<Pessoa> ListarPessoas()
         {
@@ -34,6 +45,16 @@ namespace ColecaoLivrosCDsDVDs.Repository
 
         public void AtualizarPessoa(Pessoa pessoa)
         {
+            var pessoaDoBanco = BuscarPessoaPorId(pessoa.Id);
+
+            if (pessoaDoBanco.Nome == pessoa.Nome
+                 && pessoaDoBanco.Sobrenome == pessoa.Sobrenome
+                && pessoaDoBanco.Telefone == pessoa.Telefone
+                && pessoaDoBanco.Email == pessoa.Email
+                && pessoaDoBanco.Endereço == pessoa.Endereço)
+            {
+                throw new Exception("As informações fornecidas para a edição são iguais as atuais");
+            }
             _pessoaContext.AtualizarPessoa(pessoa);
         }
 
@@ -42,14 +63,78 @@ namespace ColecaoLivrosCDsDVDs.Repository
             _pessoaContext.ExcluirPessoa(id);
         }
 
-        public List<CD> ListarCDs()
+        #endregion
+
+        #region Livro
+
+        public void CadastrarLivro(Livro livro)
         {
-            AplicacaoContext aplicacaoContext = new AplicacaoContext();
-            var cds = aplicacaoContext.CDs;
-            return cds
-                .OrderBy(x => x.Nome)
-                .ToList();
+            _livroContext.CadastrarLivro(livro);
         }
+
+        public Livro BuscarLivroPorId(int id)
+        {
+            return _livroContext.BuscarLivroPorId(id);
+        }
+
+        public List<Livro> ListarLivros()
+        {
+            return _livroContext.ListarLivros();
+        }
+
+        public void ExcluirLivro(int id)
+        {
+            _livroContext.ExcluirLivro(id);
+        }
+
+        public void AtualizarLivro(Livro livro)
+        {
+            var livroDoBanco = BuscarLivroPorId(livro.Id);
+            if (livroDoBanco.Nome == livro.Nome
+                 && livroDoBanco.Autor == livro.Autor
+                 && livroDoBanco.Genero == livro.Genero)
+                throw new Exception("As informações fornecidas para a edição são iguais as atuais");
+
+            _livroContext.AtualizarLivro(livro);
+        }
+
+        #endregion
+
+        #region Cd
+
+        public void CadastrarCd(CD cd)
+        {
+            _cdContext.CadastrarCd(cd);
+        }
+
+        public CD BuscarCdPorId(int id)
+        {
+            return _cdContext.BuscarCdPorId(id);
+        }
+
+        public List<CD> ListarCds()
+        {
+            return _cdContext.ListarCds();
+        }
+
+        public void ExcluirCd(int id)
+        {
+            _cdContext.ExcluirCd(id);
+        }
+
+        public void AtualizarCd(CD cd)
+        {
+            var cdDoBanco = BuscarCdPorId(cd.Id);
+            if (cdDoBanco.Nome == cd.Nome
+                 && cdDoBanco.Cantor == cd.Cantor
+                 && cdDoBanco.GeneroMusical == cd.GeneroMusical
+                 && cdDoBanco.Status == cd.Status)
+                throw new Exception("As informações fornecidas para a edição são iguais as atuais");
+
+            _cdContext.AtualizarCd(cd);
+        }
+
+        #endregion
 
         //public List<DVD> ListarDVDs()
         //{

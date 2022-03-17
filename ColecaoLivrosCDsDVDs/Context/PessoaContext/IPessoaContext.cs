@@ -8,10 +8,10 @@ namespace ColecaoLivrosCDsDVDs.Context
 {
     public interface IPessoaContext
     {
-        void ExcluirPessoa(int id);
-        void AtualizarPessoa(Pessoa pessooa);
-        Pessoa BuscarPessoaPorId(int id);
         void CadastrarPessoa(Pessoa pessoa);
+        Pessoa BuscarPessoaPorId(int id);
         List<Pessoa> ListarPessoas();
+        void AtualizarPessoa(Pessoa pessooa);
+        void ExcluirPessoa(int id);
     }
 }
