@@ -9,6 +9,12 @@ namespace ColecaoLivrosCDsDVDs.Contrato
     public class PessoaRequest
     {
         [Required]
+        public string Login { get; set; }
+
+        [Required]
+        public string Senha { get; set; }
+
+        [Required]
         public string Nome { get; set; }
 
         public string Sobrenome { get; set; }

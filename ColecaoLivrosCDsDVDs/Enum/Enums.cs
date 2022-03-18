@@ -7,31 +7,24 @@ namespace ColecaoLivrosCDsDVDs.Enum
 {
     public enum Genero
     {
-        Drama = 1,
-        Romance = 2,
-        Terror = 3,
-        Suspense = 4,
-        Comedia = 5,
-        Fantasia = 6,
-        Ficçao = 7,
-        Aventura = 8,
-        Documentario = 9
+        Drama = 0,
+        Romance = 1,
+        Terror = 2,
+        Suspense = 3,
+        Comedia = 4,
+        Ficçao = 5
     }
 
     public enum GeneroMusical
     {
-        MPB = 1,
-        Rock = 2,
-        Axe = 3,
-        Forro = 4,
-        HipHop = 5,
-        Jazz = 6,
-        Classica = 7
+        MPB = 0,
+        Rock = 1,
+        Axe = 2
     }
 
     public enum Status
     {
-        Disponivel = 1,
-        Indisponivel = 2,
+        Disponivel = 0,
+        Indisponivel = 1
     }
 }

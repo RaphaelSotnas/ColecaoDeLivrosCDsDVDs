@@ -45,6 +45,8 @@ namespace ColecaoLivrosCDsDVDs.Controllers
         {
             return new Pessoa
             {
+                Login = pessoa.Login,
+                Senha = pessoa.Senha,
                 Email = pessoa.Email,
                 Endereço = pessoa.Endereço,
                 Nome = pessoa.Nome,
