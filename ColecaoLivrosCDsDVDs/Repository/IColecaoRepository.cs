@@ -51,6 +51,15 @@ namespace ColecaoLivrosCDsDVDs.Repository
         #endregion
 
         #region Dvd
+        void CadastrarDvd(DVD cd);
+
+        DVD BuscarDvdPorId(int id);
+
+        public List<DVD> ListarDvds();
+
+        void AtualizarDvd(DVD dvd);
+
+        void ExcluirDvd(int id);
 
         #endregion
     }

@@ -1,5 +1,6 @@
 ﻿using ColecaoLivrosCDsDVDs.Context;
 using ColecaoLivrosCDsDVDs.Context.CdContext;
+using ColecaoLivrosCDsDVDs.Context.DvdContext;
 using ColecaoLivrosCDsDVDs.Context.LivroContext;
 using ColecaoLivrosCDsDVDs.Models;
 using ColecaoLivrosCDsDVDs.Models.Entidades;
@@ -15,15 +16,13 @@ namespace ColecaoLivrosCDsDVDs.Repository
         private readonly IPessoaContext _pessoaContext;
         private readonly ILivroContext _livroContext;
         private readonly ICdContext _cdContext;
-        public ColecaoRepository
-            (IPessoaContext pessoaContext,
-            ILivroContext livroContext,
-            ICdContext cdContext
-            )
+        private readonly IDvdContext _dvdContext;
+        public ColecaoRepository(IPessoaContext pessoaContext, ILivroContext livroContext, ICdContext cdContext, IDvdContext dvdContext)
         {
             _pessoaContext = pessoaContext;
             _livroContext = livroContext;
             _cdContext = cdContext;
+            _dvdContext = dvdContext;
         }
 
         #region Pessoa
@@ -136,13 +135,33 @@ namespace ColecaoLivrosCDsDVDs.Repository
 
         #endregion
 
-        //public List<DVD> ListarDVDs()
-        //{
-        //    AplicacaoContext aplicacaoContext = new AplicacaoContext();
-        //    var dvds = aplicacaoContext.DVDs;
-        //    return dvds
-        //        .OrderBy(x => x.Nome)
-        //        .ToList();
-        //}
+        #region DVD 
+
+        public void CadastrarDvd(DVD cd)
+        {
+            _dvdContext.CadastrarDvd(cd);
+        }
+
+        public DVD BuscarDvdPorId(int id)
+        {
+            return _dvdContext.BuscarDvdPorId(id);
+        }
+
+        public List<DVD> ListarDvds()
+        {
+            return _dvdContext.ListarDvds();
+        } 
+
+        public void AtualizarDvd(DVD dvd)
+        {
+            _dvdContext.AtualizarDvd(dvd);
+        }
+
+        public void ExcluirDvd(int id)
+        {
+            _dvdContext.ExcluirDvd(id);
+        }
+
+        #endregion
     }
 }

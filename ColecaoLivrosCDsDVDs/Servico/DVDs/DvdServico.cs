@@ -5,21 +5,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ColecaoLivrosCDsDVDs.Servico.CDs
+namespace ColecaoLivrosCDsDVDs.Servico.DVDs
 {
-    public class CdServico : ICdServico
+    public class DvdServico : IDvdServico
     {
         private readonly IColecaoRepository _colecaoRepository;
-        public CdServico(IColecaoRepository colecaoRepository)
+        public DvdServico(IColecaoRepository colecaoRepository)
         {
             _colecaoRepository = colecaoRepository;
         }
 
-        public void AtualizarCd(CD cd)
+        public void AtualizarDvd(DVD dvd)
         {
             try
             {
-                _colecaoRepository.AtualizarCd(cd);
+                _colecaoRepository.AtualizarDvd(dvd);
             }
             catch (Exception ex)
             {
@@ -27,11 +27,11 @@ namespace ColecaoLivrosCDsDVDs.Servico.CDs
             }
         }
 
-        public CD BuscarCdPorId(int id)
+        public DVD BuscarDvdPorId(int id)
         {
             try
             {
-                return _colecaoRepository.BuscarCdPorId(id);
+                return _colecaoRepository.BuscarDvdPorId(id);
             }
             catch (Exception ex)
             {
@@ -39,11 +39,11 @@ namespace ColecaoLivrosCDsDVDs.Servico.CDs
             }
         }
 
-        public void CadastrarCd(CD cd)
+        public void CadastrarDvd(DVD cd)
         {
             try
             {
-                _colecaoRepository.CadastrarCd(cd);
+                _colecaoRepository.CadastrarDvd(cd);
             }
             catch (Exception ex)
             {
@@ -51,11 +51,11 @@ namespace ColecaoLivrosCDsDVDs.Servico.CDs
             }
         }
 
-        public void ExcluirCd(int id)
+        public void ExcluirDvd(int id)
         {
             try
             {
-                _colecaoRepository.ExcluirCd(id);
+                _colecaoRepository.ExcluirDvd(id);
             }
             catch (Exception ex)
             {
@@ -63,11 +63,11 @@ namespace ColecaoLivrosCDsDVDs.Servico.CDs
             }
         }
 
-        public List<CD> ListarCds()
+        public List<DVD> ListarDvds()
         {
             try
             {
-                return _colecaoRepository.ListarCds();
+                return _colecaoRepository.ListarDvds();
             }
             catch (Exception ex)
             {
