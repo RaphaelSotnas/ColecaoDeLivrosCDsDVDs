@@ -8,7 +8,7 @@ namespace ColecaoLivrosCDsDVDs.Migrations
         {
             migrationBuilder.AlterColumn<string>(
                 name: "Telefone",
-                table: "Pessoas",
+                table: "Usuarios",
                 type: "nvarchar(max)",
                 nullable: false,
                 defaultValue: "",
@@ -21,7 +21,7 @@ namespace ColecaoLivrosCDsDVDs.Migrations
         {
             migrationBuilder.AlterColumn<string>(
                 name: "Telefone",
-                table: "Pessoas",
+                table: "Usuarios",
                 type: "nvarchar(max)",
                 nullable: true,
                 oldClrType: typeof(string),

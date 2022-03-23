@@ -23,7 +23,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Pessoa" asp-action="ListarPessoas">Pessoas</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="ListarUsuarios">Usuarios</a>
                         </li>
 
                         <li class="nav-item">
@@ -37,6 +37,27 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Dvd" asp-action="ListarDvds">Dvds</a>
                         </li>
+
+                        @{
+                            if (TempData["login"] != null)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Emprestimo" asp-action="Index">Emprestimo</a>
+                                </li> 
+
+                                <li class="nav-item">
+                                    <p class="nav-link text-dark" >Usuário: @TempData["login"]</p>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="PaginaLogin">Login</a>
+                                </li>
+                            }
+                        }
+
+
                     </ul>
                 </div>
             </div>

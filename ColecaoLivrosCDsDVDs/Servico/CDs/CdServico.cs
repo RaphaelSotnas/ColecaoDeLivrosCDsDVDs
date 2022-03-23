@@ -15,7 +15,7 @@ namespace ColecaoLivrosCDsDVDs.Servico.CDs
             _colecaoRepository = colecaoRepository;
         }
 
-        public void AtualizarCd(CD cd)
+        public void Atualizar(CD cd)
         {
             try
             {
@@ -27,7 +27,7 @@ namespace ColecaoLivrosCDsDVDs.Servico.CDs
             }
         }
 
-        public CD BuscarCdPorId(int id)
+        public CD BuscarPorId(int id)
         {
             try
             {
@@ -39,7 +39,7 @@ namespace ColecaoLivrosCDsDVDs.Servico.CDs
             }
         }
 
-        public void CadastrarCd(CD cd)
+        public void Cadastrar(CD cd)
         {
             try
             {
@@ -51,7 +51,7 @@ namespace ColecaoLivrosCDsDVDs.Servico.CDs
             }
         }
 
-        public void ExcluirCd(int id)
+        public void Excluir(int id)
         {
             try
             {
@@ -63,7 +63,7 @@ namespace ColecaoLivrosCDsDVDs.Servico.CDs
             }
         }
 
-        public List<CD> ListarCds()
+        public List<CD> Listar()
         {
             try
             {

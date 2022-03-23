@@ -87,7 +87,7 @@ namespace ColecaoLivrosCDsDVDs.Migrations
                     b.ToTable("Livros");
                 });
 
-            modelBuilder.Entity("ColecaoLivrosCDsDVDs.Models.Pessoa", b =>
+            modelBuilder.Entity("ColecaoLivrosCDsDVDs.Models.Usuario", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -122,7 +122,7 @@ namespace ColecaoLivrosCDsDVDs.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Pessoas");
+                    b.ToTable("Usuarios");
                 });
 #pragma warning restore 612, 618
         }

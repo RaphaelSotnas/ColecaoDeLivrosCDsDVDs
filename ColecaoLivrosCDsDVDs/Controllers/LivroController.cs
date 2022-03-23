@@ -32,7 +32,7 @@ namespace ColecaoLivrosCDsDVDs.Controllers
         {
             var livro = MapearLivro(request);
 
-            _livroServico.CadastrarLivro(livro);
+            _livroServico.Cadastrar(livro);
 
             return RedirectToAction("ListarLivros");
         }
@@ -54,7 +54,7 @@ namespace ColecaoLivrosCDsDVDs.Controllers
             if (id == 0)
                 return BadRequest();
 
-            var livro = _livroServico.BuscarLivroPorId(id);
+            var livro = _livroServico.BuscarPorId(id);
             if (livro == null)
                 return NotFound();
 
@@ -66,7 +66,7 @@ namespace ColecaoLivrosCDsDVDs.Controllers
         {
             try
             {
-                _livroServico.AtualizarLivro(livro);
+                _livroServico.Atualizar(livro);
                 return RedirectToAction("ListarLivros");
             }
             catch (Exception ex)
@@ -80,7 +80,7 @@ namespace ColecaoLivrosCDsDVDs.Controllers
         {
             try
             {
-                var livros = _livroServico.ListarLivros();
+                var livros = _livroServico.Listar();
                 return View(livros);
             }
             catch (Exception ex)
@@ -95,7 +95,7 @@ namespace ColecaoLivrosCDsDVDs.Controllers
             if (id == 0)
                 return BadRequest();
 
-            var livro = _livroServico.BuscarLivroPorId(id);
+            var livro = _livroServico.BuscarPorId(id);
             if (livro == null)
                 return NotFound();
 
@@ -108,7 +108,7 @@ namespace ColecaoLivrosCDsDVDs.Controllers
             if (id == 0)
                 return BadRequest();
 
-            var livro = _livroServico.BuscarLivroPorId(id);
+            var livro = _livroServico.BuscarPorId(id);
             if (livro == null)
                 return NotFound();
 
@@ -120,7 +120,7 @@ namespace ColecaoLivrosCDsDVDs.Controllers
         {
             try
             {
-                _livroServico.ExcluirLivro(id);
+                _livroServico.Excluir(id);
                 return RedirectToAction("ListarLivros");
             }
             catch (Exception ex)

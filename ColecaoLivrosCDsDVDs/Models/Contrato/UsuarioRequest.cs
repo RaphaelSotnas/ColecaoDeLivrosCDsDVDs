@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ColecaoLivrosCDsDVDs.Contrato
 {
-    public class PessoaRequest
+    public class UsuarioRequest
     {
         [Required]
         public string Login { get; set; }

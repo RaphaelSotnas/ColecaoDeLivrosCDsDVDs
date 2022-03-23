@@ -8,14 +8,14 @@ namespace ColecaoLivrosCDsDVDs.Migrations
         {
             migrationBuilder.AddColumn<string>(
                 name: "Login",
-                table: "Pessoas",
+                table: "Usuarios",
                 type: "nvarchar(max)",
                 nullable: false,
                 defaultValue: "");
 
             migrationBuilder.AddColumn<string>(
                 name: "Senha",
-                table: "Pessoas",
+                table: "Usuarios",
                 type: "nvarchar(max)",
                 nullable: false,
                 defaultValue: "");
@@ -25,11 +25,11 @@ namespace ColecaoLivrosCDsDVDs.Migrations
         {
             migrationBuilder.DropColumn(
                 name: "Login",
-                table: "Pessoas");
+                table: "Usuarios");
 
             migrationBuilder.DropColumn(
                 name: "Senha",
-                table: "Pessoas");
+                table: "Usuarios");
         }
     }
 }

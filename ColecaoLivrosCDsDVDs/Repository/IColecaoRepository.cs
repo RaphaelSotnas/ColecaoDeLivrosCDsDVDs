@@ -9,16 +9,18 @@ namespace ColecaoLivrosCDsDVDs.Repository
 {
     public interface IColecaoRepository
     {
-        #region Pessoa
+        #region Usuario
 
-        void CadastrarPessoa(Pessoa pessoa);
+        void CadastrarUsuario(Usuario usuario);
 
-        Pessoa BuscarPessoaPorId(int id);
+        Usuario BuscarUsuarioPorId(int id);
 
-        List<Pessoa> ListarPessoas();
-        void AtualizarPessoa(Pessoa pessooa);
+        List<Usuario> ListarUsuarios();
+        void AtualizarUsuario(Usuario pessooa);
 
-        void ExcluirPessoa(int id);
+        void ExcluirUsuario(int id);
+
+        Usuario EfetuarLogin(string login, string senha);
 
         #endregion
 

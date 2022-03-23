@@ -8,16 +8,19 @@ namespace ColecaoLivrosCDsDVDs.Context.DvdContext
 {
     public class DvdContext : IDvdContext
     {
-        public void AtualizarDvd(DVD dvd)
+        private readonly AplicacaoContext _aplicacaoContext;
+        public DvdContext(AplicacaoContext aplicacaoContext)
         {
-            AplicacaoContext aplicacaoContext = new AplicacaoContext();
-
-            var dvdDoBanco = BuscarDvdPorId(dvd.Id);
+            _aplicacaoContext = aplicacaoContext;
+        }
+        public void Atualizar(DVD dvd)
+        {
+            var dvdDoBanco = BuscarPorId(dvd.Id);
 
             var dvdAtualizado = MapearParaDvd(dvdDoBanco, dvd);
 
-            aplicacaoContext.DVDs.Update(dvdAtualizado);
-            aplicacaoContext.SaveChanges();
+            _aplicacaoContext.DVDs.Update(dvdAtualizado);
+            _aplicacaoContext.SaveChanges();
         }
 
         private DVD MapearParaDvd(DVD dvdDoBanco, DVD dvd)
@@ -29,34 +32,28 @@ namespace ColecaoLivrosCDsDVDs.Context.DvdContext
             return dvdDoBanco;
         }
 
-        public DVD BuscarDvdPorId(int id)
+        public DVD BuscarPorId(int id)
         {
-            AplicacaoContext aplicacaoContext = new AplicacaoContext();
-            return aplicacaoContext.DVDs.FirstOrDefault(x => x.Id == id);
+            return _aplicacaoContext.DVDs.FirstOrDefault(x => x.Id == id);
         }
 
-        public void CadastrarDvd(DVD cd)
+        public void Cadastrar(DVD cd)
         {
-            AplicacaoContext aplicacaoContext = new AplicacaoContext();
-            aplicacaoContext.DVDs.Add(cd);
-            aplicacaoContext.SaveChanges();
+            _aplicacaoContext.DVDs.Add(cd);
+            _aplicacaoContext.SaveChanges();
         }
 
-        public void ExcluirDvd(int id)
+        public void Excluir(int id)
         {
-            AplicacaoContext aplicacaoContext = new AplicacaoContext();
+            var dvdExcluir = BuscarPorId(id);
 
-            var dvdExcluir = BuscarDvdPorId(id);
-
-            aplicacaoContext.DVDs.Remove(dvdExcluir);
-            aplicacaoContext.SaveChanges();
+            _aplicacaoContext.DVDs.Remove(dvdExcluir);
+            _aplicacaoContext.SaveChanges();
         }
 
-        public List<DVD> ListarDvds()
+        public List<DVD> Listar()
         {
-            AplicacaoContext aplicacaoContext = new AplicacaoContext();
-
-            var dvds = aplicacaoContext.DVDs;
+            var dvds = _aplicacaoContext.DVDs;
 
             return dvds
                     .OrderBy(x => x.Nome)

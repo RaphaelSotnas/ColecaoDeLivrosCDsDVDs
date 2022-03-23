@@ -1,4 +1,5 @@
 ﻿using ColecaoLivrosCDsDVDs.Models.Entidades;
+using ColecaoLivrosCDsDVDs.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,16 +7,8 @@ using System.Threading.Tasks;
 
 namespace ColecaoLivrosCDsDVDs.Context.LivroContext
 {
-    public interface ILivroContext
+    public interface ILivroContext : IGenericoRepository<Livro>
     {
-        void CadastrarLivro(Livro livro);
-
-        Livro BuscarLivroPorId(int id);
-
-        public List<Livro> ListarLivros();
-
-        void AtualizarLivro(Livro livro);
-
-        void ExcluirLivro(int id);
+        
     }
 }

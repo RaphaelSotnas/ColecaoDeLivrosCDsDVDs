@@ -32,7 +32,7 @@ namespace ColecaoLivrosCDsDVDs.Controllers
         {
             var dvd = MapearParaDvd(dvdRequest);
 
-            _dvdServico.CadastrarDvd(dvd);
+            _dvdServico.Cadastrar(dvd);
 
             return RedirectToAction("ListarDvds");
         }
@@ -52,7 +52,7 @@ namespace ColecaoLivrosCDsDVDs.Controllers
         {
             try
             {
-                var dvds = _dvdServico.ListarDvds();
+                var dvds = _dvdServico.Listar();
                 return View(dvds);
             }
             catch (Exception)
@@ -67,7 +67,7 @@ namespace ColecaoLivrosCDsDVDs.Controllers
             if (id == 0)
                 return BadRequest();
 
-            var dvd = _dvdServico.BuscarDvdPorId(id);
+            var dvd = _dvdServico.BuscarPorId(id);
             if (dvd == null)
                 return NotFound();
 
@@ -79,7 +79,7 @@ namespace ColecaoLivrosCDsDVDs.Controllers
         {
             try
             {
-                _dvdServico.AtualizarDvd(dvd);
+                _dvdServico.Atualizar(dvd);
                 return RedirectToAction("ListarDvds");
             }
             catch (Exception ex)
@@ -96,7 +96,7 @@ namespace ColecaoLivrosCDsDVDs.Controllers
                 if (id == 0)
                     return BadRequest();
 
-                var dvd = _dvdServico.BuscarDvdPorId(id);
+                var dvd = _dvdServico.BuscarPorId(id);
                 if (dvd == null)
                     return NotFound();
 
@@ -113,7 +113,7 @@ namespace ColecaoLivrosCDsDVDs.Controllers
         {
             try
             {
-                _dvdServico.ExcluirDvd(id);
+                _dvdServico.Excluir(id);
                 return RedirectToAction("ListarDvds");
             }
             catch (Exception)

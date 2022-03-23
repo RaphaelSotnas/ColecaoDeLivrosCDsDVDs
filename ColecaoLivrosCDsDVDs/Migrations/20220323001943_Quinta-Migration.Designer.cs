@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ColecaoLivrosCDsDVDs.Migrations
 {
     [DbContext(typeof(AplicacaoContext))]
-    [Migration("20220316211706_SegundaMigration")]
-    partial class SegundaMigration
+    [Migration("20220323001943_Quinta-Migration")]
+    partial class QuintaMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -36,6 +36,9 @@ namespace ColecaoLivrosCDsDVDs.Migrations
                     b.Property<string>("Nome")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("CDs");
@@ -53,6 +56,9 @@ namespace ColecaoLivrosCDsDVDs.Migrations
 
                     b.Property<string>("Nome")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -75,6 +81,9 @@ namespace ColecaoLivrosCDsDVDs.Migrations
                     b.Property<string>("Nome")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("Livros");
@@ -94,7 +103,15 @@ namespace ColecaoLivrosCDsDVDs.Migrations
                     b.Property<string>("Endereço")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Login")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Senha")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

@@ -8,30 +8,30 @@ using System.Threading.Tasks;
 
 namespace ColecaoLivrosCDsDVDs.Servico
 {
-    public class PessoaServico : IPessoaServico
+    public class UsuarioServico : IUsuarioServico
     {
         private readonly IColecaoRepository _colecaoRepository;
-        public PessoaServico(IColecaoRepository colecaoRepository)
+        public UsuarioServico(IColecaoRepository colecaoRepository)
         {
             _colecaoRepository = colecaoRepository;
         }
 
-        public void CadastrarPessoa(Pessoa pessoa)
+        public void Cadastrar(Usuario usuario)
         {
             try
             {
-                _colecaoRepository.CadastrarPessoa(pessoa);
+                _colecaoRepository.CadastrarUsuario(usuario);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        public Pessoa BuscarPessoaPorId(int id)
+        public Usuario BuscarPorId(int id)
         {
             try
             {
-                return _colecaoRepository.BuscarPessoaPorId(id);
+                return _colecaoRepository.BuscarUsuarioPorId(id);
             }
             catch (Exception ex)
             {
@@ -39,11 +39,11 @@ namespace ColecaoLivrosCDsDVDs.Servico
             }
         }
 
-        public List<Pessoa> ListarPessoas()
+        public List<Usuario> Listar()
         {
             try 
             {
-                return _colecaoRepository.ListarPessoas();
+                return _colecaoRepository.ListarUsuarios();
             }
             catch (Exception ex)
             {
@@ -51,11 +51,11 @@ namespace ColecaoLivrosCDsDVDs.Servico
             }
         }
 
-        public void AtualizarPessoa(Pessoa pessoa)
+        public void Atualizar(Usuario usuario)
         {
             try
             {
-                _colecaoRepository.AtualizarPessoa(pessoa);
+                _colecaoRepository.AtualizarUsuario(usuario);
             }
             catch (Exception ex)
             {
@@ -63,11 +63,23 @@ namespace ColecaoLivrosCDsDVDs.Servico
             }
         }
 
-        public void ExcluirPessoa(int id)
+        public void Excluir(int id)
         {
             try
             {
-                _colecaoRepository.ExcluirPessoa(id);
+                _colecaoRepository.ExcluirUsuario(id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Usuario EfetuarLogin(string login, string senha)
+        {
+            try
+            {
+                return _colecaoRepository.EfetuarLogin(login, senha);
             }
             catch (Exception ex)
             {

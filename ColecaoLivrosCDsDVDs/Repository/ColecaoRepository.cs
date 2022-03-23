@@ -13,77 +13,84 @@ namespace ColecaoLivrosCDsDVDs.Repository
 {
     public class ColecaoRepository : IColecaoRepository
     {
-        private readonly IPessoaContext _pessoaContext;
+        private readonly IUsuarioContext _usuarioContext;
         private readonly ILivroContext _livroContext;
         private readonly ICdContext _cdContext;
         private readonly IDvdContext _dvdContext;
-        public ColecaoRepository(IPessoaContext pessoaContext, ILivroContext livroContext, ICdContext cdContext, IDvdContext dvdContext)
+        public ColecaoRepository(IUsuarioContext usuarioContext, ILivroContext livroContext, ICdContext cdContext, IDvdContext dvdContext)
         {
-            _pessoaContext = pessoaContext;
+            _usuarioContext = usuarioContext;
             _livroContext = livroContext;
             _cdContext = cdContext;
             _dvdContext = dvdContext;
         }
 
-        #region Pessoa
+        #region Usuario
 
-        public void CadastrarPessoa(Pessoa pessoa)
+        public void CadastrarUsuario(Usuario usuario)
         {
-            _pessoaContext.CadastrarPessoa(pessoa);
+            _usuarioContext.Cadastrar(usuario);
         }
 
-        public List<Pessoa> ListarPessoas()
+        public List<Usuario> ListarUsuarios()
         {
-            return _pessoaContext.ListarPessoas();
+            return _usuarioContext.Listar();
         }
 
-        public Pessoa BuscarPessoaPorId(int id)
+        public Usuario BuscarUsuarioPorId(int id)
         {
-            return _pessoaContext.BuscarPessoaPorId(id);
+            return _usuarioContext.BuscarPorId(id);
         }
 
-        public void AtualizarPessoa(Pessoa pessoa)
+        public void AtualizarUsuario(Usuario usuario)
         {
-            var pessoaDoBanco = BuscarPessoaPorId(pessoa.Id);
+            var usuarioDoBanco = BuscarUsuarioPorId(usuario.Id);
 
-            if (pessoaDoBanco.Nome == pessoa.Nome
-                 && pessoaDoBanco.Sobrenome == pessoa.Sobrenome
-                && pessoaDoBanco.Telefone == pessoa.Telefone
-                && pessoaDoBanco.Email == pessoa.Email
-                && pessoaDoBanco.Endereço == pessoa.Endereço)
+            if (usuarioDoBanco.Nome == usuario.Nome
+                 && usuarioDoBanco.Sobrenome == usuario.Sobrenome
+                && usuarioDoBanco.Telefone == usuario.Telefone
+                && usuarioDoBanco.Email == usuario.Email
+                && usuarioDoBanco.Endereço == usuario.Endereço)
             {
                 throw new Exception("As informações fornecidas para a edição são iguais as atuais");
             }
-            _pessoaContext.AtualizarPessoa(pessoa);
+            _usuarioContext.Atualizar(usuario);
         }
 
-        public void ExcluirPessoa(int id)
+        public void ExcluirUsuario(int id)
         {
-            _pessoaContext.ExcluirPessoa(id);
+            _usuarioContext.Excluir(id);
         }
 
+        public Usuario EfetuarLogin(string login, string senha)
+        {
+            var usuarioDoBanco = _usuarioContext.EfetuarLogin(login, senha);
+            if (usuarioDoBanco.Senha != senha)
+                throw new Exception("Senha e login incompatíveis");
+            return usuarioDoBanco;
+        }
         #endregion
 
         #region Livro
 
         public void CadastrarLivro(Livro livro)
         {
-            _livroContext.CadastrarLivro(livro);
+            _livroContext.Cadastrar(livro);
         }
 
         public Livro BuscarLivroPorId(int id)
         {
-            return _livroContext.BuscarLivroPorId(id);
+            return _livroContext.BuscarPorId(id);
         }
 
         public List<Livro> ListarLivros()
         {
-            return _livroContext.ListarLivros();
+            return _livroContext.Listar();
         }
 
         public void ExcluirLivro(int id)
         {
-            _livroContext.ExcluirLivro(id);
+            _livroContext.Excluir(id);
         }
 
         public void AtualizarLivro(Livro livro)
@@ -94,7 +101,7 @@ namespace ColecaoLivrosCDsDVDs.Repository
                  && livroDoBanco.Genero == livro.Genero)
                 throw new Exception("As informações fornecidas para a edição são iguais as atuais");
 
-            _livroContext.AtualizarLivro(livro);
+            _livroContext.Atualizar(livro);
         }
 
         #endregion
@@ -103,22 +110,22 @@ namespace ColecaoLivrosCDsDVDs.Repository
 
         public void CadastrarCd(CD cd)
         {
-            _cdContext.CadastrarCd(cd);
+            _cdContext.Cadastrar(cd);
         }
 
         public CD BuscarCdPorId(int id)
         {
-            return _cdContext.BuscarCdPorId(id);
+            return _cdContext.BuscarPorId(id);
         }
 
         public List<CD> ListarCds()
         {
-            return _cdContext.ListarCds();
+            return _cdContext.Listar();
         }
 
         public void ExcluirCd(int id)
         {
-            _cdContext.ExcluirCd(id);
+            _cdContext.Excluir(id);
         }
 
         public void AtualizarCd(CD cd)
@@ -130,7 +137,7 @@ namespace ColecaoLivrosCDsDVDs.Repository
                  && cdDoBanco.Status == cd.Status)
                 throw new Exception("As informações fornecidas para a edição são iguais as atuais");
 
-            _cdContext.AtualizarCd(cd);
+            _cdContext.Atualizar(cd);
         }
 
         #endregion
@@ -139,27 +146,27 @@ namespace ColecaoLivrosCDsDVDs.Repository
 
         public void CadastrarDvd(DVD cd)
         {
-            _dvdContext.CadastrarDvd(cd);
+            _dvdContext.Cadastrar(cd);
         }
 
         public DVD BuscarDvdPorId(int id)
         {
-            return _dvdContext.BuscarDvdPorId(id);
+            return _dvdContext.BuscarPorId(id);
         }
 
         public List<DVD> ListarDvds()
         {
-            return _dvdContext.ListarDvds();
+            return _dvdContext.Listar();
         } 
 
         public void AtualizarDvd(DVD dvd)
         {
-            _dvdContext.AtualizarDvd(dvd);
+            _dvdContext.Atualizar(dvd);
         }
 
         public void ExcluirDvd(int id)
         {
-            _dvdContext.ExcluirDvd(id);
+            _dvdContext.Excluir(id);
         }
 
         #endregion

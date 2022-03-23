@@ -1,4 +1,5 @@
 ﻿using ColecaoLivrosCDsDVDs.Models.Entidades;
+using ColecaoLivrosCDsDVDs.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,16 +7,8 @@ using System.Threading.Tasks;
 
 namespace ColecaoLivrosCDsDVDs.Context.DvdContext
 {
-    public interface IDvdContext
+    public interface IDvdContext : IGenericoRepository<DVD>
     {
-        void CadastrarDvd(DVD cd);
-
-        DVD BuscarDvdPorId(int id);
-
-        public List<DVD> ListarDvds();
-
-        void AtualizarDvd(DVD dvd);
-
-        void ExcluirDvd(int id);
+        
     }
 }

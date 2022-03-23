@@ -1,4 +1,5 @@
 ﻿using ColecaoLivrosCDsDVDs.Models.Entidades;
+using ColecaoLivrosCDsDVDs.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,16 +7,8 @@ using System.Threading.Tasks;
 
 namespace ColecaoLivrosCDsDVDs.Servico.Livros
 {
-    public interface ILivroServico
+    public interface ILivroServico : IGenericoRepository<Livro>
     {
-        void CadastrarLivro(Livro livro);
-
-        Livro BuscarLivroPorId(int id);
-
-        void AtualizarLivro(Livro livro);
-
-        public List<Livro> ListarLivros();
-
-        void ExcluirLivro(int id);
+        
     }
 }

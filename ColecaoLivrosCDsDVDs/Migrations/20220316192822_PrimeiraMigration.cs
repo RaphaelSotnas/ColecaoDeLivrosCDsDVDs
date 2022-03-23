@@ -51,7 +51,7 @@ namespace ColecaoLivrosCDsDVDs.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Pessoas",
+                name: "Usuarios",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -64,7 +64,7 @@ namespace ColecaoLivrosCDsDVDs.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Pessoas", x => x.Id);
+                    table.PrimaryKey("PK_Usuarios", x => x.Id);
                 });
         }
 
@@ -80,7 +80,7 @@ namespace ColecaoLivrosCDsDVDs.Migrations
                 name: "Livros");
 
             migrationBuilder.DropTable(
-                name: "Pessoas");
+                name: "Usuarios");
         }
     }
 }

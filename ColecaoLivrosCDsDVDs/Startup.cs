@@ -33,16 +33,27 @@ namespace ColecaoLivrosCDsDVDs
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-
-            services.AddScoped<IPessoaServico, PessoaServico>();
-            services.AddScoped<IPessoaContext, PessoaContext>();
-            services.AddScoped<ILivroContext, LivroContext>();
-            services.AddScoped<ILivroServico, LivroServico>();
-            services.AddScoped<ICdContext, CdContext>();
-            services.AddScoped<ICdServico, CdServico>();
-            services.AddScoped<IDvdContext, DvdContext>();
-            services.AddScoped<IDvdServico, DvdServico>();
+            
             services.AddScoped<IColecaoRepository, ColecaoRepository>();
+            ContextServices(services);
+            ServicoServices(services);
+            services.AddScoped<AplicacaoContext>();
+        }
+
+        public void ServicoServices(IServiceCollection services)
+        {
+            services.AddScoped<IUsuarioServico, UsuarioServico>();
+            services.AddScoped<ILivroServico, LivroServico>();
+            services.AddScoped<ICdServico, CdServico>();
+            services.AddScoped<IDvdServico, DvdServico>();
+        }
+
+        public void ContextServices(IServiceCollection services)
+        {
+            services.AddTransient<IUsuarioContext, UsuarioContext>();
+            services.AddScoped<ILivroContext, LivroContext>();
+            services.AddScoped<ICdContext, CdContext>();
+            services.AddScoped<IDvdContext, DvdContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

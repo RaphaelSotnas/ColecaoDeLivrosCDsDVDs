@@ -8,38 +8,38 @@ namespace ColecaoLivrosCDsDVDs.Context.CdContext
 {
     public class CdContext : ICdContext
     {
-        public void CadastrarCd(CD cd)
+        private readonly AplicacaoContext _aplicacaoContext;
+        public CdContext(AplicacaoContext aplicacaoContext)
         {
-            AplicacaoContext aplicacaoContext = new AplicacaoContext();
-            aplicacaoContext.CDs.Add(cd);
-            aplicacaoContext.SaveChanges();
+            _aplicacaoContext = aplicacaoContext;
+        }
+        public void Cadastrar(CD cd)
+        {
+            _aplicacaoContext.CDs.Add(cd);
+            _aplicacaoContext.SaveChanges();
         }
 
-        public CD BuscarCdPorId(int id)
+        public CD BuscarPorId(int id)
         {
-            AplicacaoContext aplicacaoContext = new AplicacaoContext();
-            return aplicacaoContext.CDs.FirstOrDefault(x => x.Id == id);
+            return _aplicacaoContext.CDs.FirstOrDefault(x => x.Id == id);
         }
 
-        public List<CD> ListarCds()
+        public List<CD> Listar()
         {
-            AplicacaoContext aplicacaoContext = new AplicacaoContext();
-            var cds = aplicacaoContext.CDs;
+            var cds = _aplicacaoContext.CDs;
             return cds
                 .OrderBy(x => x.Nome)
                 .ToList();
         }
 
-        public void AtualizarCd(CD cd)
+        public void Atualizar(CD cd)
         {
-            AplicacaoContext aplicacaoContext = new AplicacaoContext();
-
-            var cdDoBanco = BuscarCdPorId(cd.Id);
+            var cdDoBanco = BuscarPorId(cd.Id);
 
             var cdAtualizado = MapearParaCdAtualizado(cdDoBanco, cd);
 
-            aplicacaoContext.CDs.Update(cdAtualizado);
-            aplicacaoContext.SaveChanges();
+            _aplicacaoContext.CDs.Update(cdAtualizado);
+            _aplicacaoContext.SaveChanges();
         }
 
         private CD MapearParaCdAtualizado(CD cdDoBanco, CD cd)
@@ -52,14 +52,12 @@ namespace ColecaoLivrosCDsDVDs.Context.CdContext
             return cdDoBanco;
         }
 
-        public void ExcluirCd(int id)
+        public void Excluir(int id)
         {
-            AplicacaoContext aplicacaoContext = new AplicacaoContext();
+            var cdExcluir = BuscarPorId(id);
 
-            var cdExcluir = BuscarCdPorId(id);
-
-            aplicacaoContext.CDs.Remove(cdExcluir);
-            aplicacaoContext.SaveChanges();
+            _aplicacaoContext.CDs.Remove(cdExcluir);
+            _aplicacaoContext.SaveChanges();
         }
     }
 }

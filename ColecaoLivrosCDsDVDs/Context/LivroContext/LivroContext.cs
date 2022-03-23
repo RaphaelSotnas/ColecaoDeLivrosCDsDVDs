@@ -8,38 +8,38 @@ namespace ColecaoLivrosCDsDVDs.Context.LivroContext
 {
     public class LivroContext : ILivroContext
     {
-        public void CadastrarLivro(Livro livro)
+        private readonly AplicacaoContext _aplicacaoContext;
+        public LivroContext(AplicacaoContext aplicacaoContext)
         {
-            AplicacaoContext aplicacaoContext = new AplicacaoContext();
-            aplicacaoContext.Livros.Add(livro);
-            aplicacaoContext.SaveChanges();
+            _aplicacaoContext = aplicacaoContext;
+        }
+        public void Cadastrar(Livro livro)
+        {
+            _aplicacaoContext.Livros.Add(livro);
+            _aplicacaoContext.SaveChanges();
         }
 
-        public Livro BuscarLivroPorId(int id)
+        public Livro BuscarPorId(int id)
         {
-            AplicacaoContext aplicacaoContext = new AplicacaoContext();
-            return aplicacaoContext.Livros.FirstOrDefault(x => x.Id == id);
+            return _aplicacaoContext.Livros.FirstOrDefault(x => x.Id == id);
         }
 
-        public List<Livro> ListarLivros()
+        public List<Livro> Listar()
         {
-            AplicacaoContext aplicacaoContext = new AplicacaoContext();
-            var livros = aplicacaoContext.Livros;
+            var livros = _aplicacaoContext.Livros;
             return livros
                 .OrderBy(x => x.Nome)
                 .ToList();
         }
 
-        public void AtualizarLivro(Livro livro)
+        public void Atualizar(Livro livro)
         {
-            AplicacaoContext aplicacaoContext = new AplicacaoContext();
-
-            var livroDoBanco = BuscarLivroPorId(livro.Id);
+            var livroDoBanco = BuscarPorId(livro.Id);
 
             var livroAtualizado = MapearParaLivroAtualizado(livroDoBanco, livro);
 
-            aplicacaoContext.Livros.Update(livroAtualizado);
-            aplicacaoContext.SaveChanges();
+            _aplicacaoContext.Livros.Update(livroAtualizado);
+            _aplicacaoContext.SaveChanges();
         }
 
         private Livro MapearParaLivroAtualizado(Livro livroDoBanco, Livro livro)
@@ -52,14 +52,12 @@ namespace ColecaoLivrosCDsDVDs.Context.LivroContext
             return livroDoBanco;
         }
 
-        public void ExcluirLivro(int id)
+        public void Excluir(int id)
         {
-            AplicacaoContext aplicacaoContext = new AplicacaoContext();
+            var livroExcluir = BuscarPorId(id);
 
-            var livroExcluir = BuscarLivroPorId(id);
-
-            aplicacaoContext.Livros.Remove(livroExcluir);
-            aplicacaoContext.SaveChanges();
+            _aplicacaoContext.Livros.Remove(livroExcluir);
+            _aplicacaoContext.SaveChanges();
         }
     }
 }

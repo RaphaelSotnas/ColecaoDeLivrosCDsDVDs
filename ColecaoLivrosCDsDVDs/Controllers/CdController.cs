@@ -33,7 +33,7 @@ namespace ColecaoLivrosCDsDVDs.Controllers
         {
             var cd = MapearCd(cdrequest);
 
-            _cdServico.CadastrarCd(cd);
+            _cdServico.Cadastrar(cd);
 
             return RedirectToAction("ListarCds");
         }
@@ -55,7 +55,7 @@ namespace ColecaoLivrosCDsDVDs.Controllers
             if (id == 0)
                 return BadRequest();
 
-            var cd = _cdServico.BuscarCdPorId(id);
+            var cd = _cdServico.BuscarPorId(id);
             if (cd == null)
                 return NotFound();
 
@@ -67,7 +67,7 @@ namespace ColecaoLivrosCDsDVDs.Controllers
         {
             try
             {
-                _cdServico.AtualizarCd(cd);
+                _cdServico.Atualizar(cd);
                 return RedirectToAction("ListarCds");
             }
             catch (Exception ex)
@@ -81,7 +81,7 @@ namespace ColecaoLivrosCDsDVDs.Controllers
         {
             try
             {
-                var cds = _cdServico.ListarCds();
+                var cds = _cdServico.Listar();
                 return View(cds);
             }
             catch (Exception)
@@ -98,7 +98,7 @@ namespace ColecaoLivrosCDsDVDs.Controllers
                 if (id == 0)
                     return BadRequest();
 
-                var cd = _cdServico.BuscarCdPorId(id);
+                var cd = _cdServico.BuscarPorId(id);
                 if (cd == null)
                     return NotFound();
 
@@ -118,7 +118,7 @@ namespace ColecaoLivrosCDsDVDs.Controllers
                 if (id == 0)
                     return BadRequest();
 
-                var cd = _cdServico.BuscarCdPorId(id);
+                var cd = _cdServico.BuscarPorId(id);
                 if (cd == null)
                     return NotFound();
 
@@ -135,7 +135,7 @@ namespace ColecaoLivrosCDsDVDs.Controllers
         {
             try
             {
-                _cdServico.ExcluirCd(id);
+                _cdServico.Excluir(id);
                 return RedirectToAction("ListarCds");
             }
             catch (Exception)

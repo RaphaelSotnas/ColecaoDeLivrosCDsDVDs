@@ -10,7 +10,7 @@ namespace ColecaoLivrosCDsDVDs.Context
 {
     public class AplicacaoContext : DbContext
     {
-        public DbSet<Pessoa> Pessoas { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Livro> Livros { get; set; }
         public DbSet<DVD> DVDs { get; set; }
         public DbSet<CD> CDs { get; set; }
