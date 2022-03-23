@@ -22,6 +22,8 @@ namespace ColecaoLivrosCDsDVDs.Repository
 
         Usuario EfetuarLogin(string login, string senha);
 
+        Usuario DetalharUsuario(int id);
+
         #endregion
 
         #region Livros

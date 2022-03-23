@@ -3,6 +3,7 @@ using ColecaoLivrosCDsDVDs.Models;
 using ColecaoLivrosCDsDVDs.Models.Entidades;
 using ColecaoLivrosCDsDVDs.Repository;
 using ColecaoLivrosCDsDVDs.Servico;
+using ColecaoLivrosCDsDVDs.Servico.Emprestimo;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -14,10 +15,13 @@ namespace ColecaoLivrosCDsDVDs.Controllers
     public class UsuarioController : Controller
     {
         private readonly IUsuarioServico _usuarioServico;
+        private readonly IEmprestimoServico _emprestimoServico;
 
-        public UsuarioController(IUsuarioServico usuarioServico)
+        public UsuarioController(IUsuarioServico usuarioServico,
+            IEmprestimoServico emprestimoServico)
         {
             _usuarioServico = usuarioServico;
+            _emprestimoServico = emprestimoServico;
         }
 
         public IActionResult Index()
@@ -25,20 +29,43 @@ namespace ColecaoLivrosCDsDVDs.Controllers
             return View();
         }
 
-        [HttpGet]
-        public IActionResult PaginaCadastrarUsuario()
+        [HttpPost]
+        public IActionResult PaginaCadastrarUsuario(int idLivro, int idCd, int idDvd)
         {
+            TempData["idLivroCadastro"] = idLivro;
+            TempData["idCdCadastro"] = idCd;
+            TempData["idDvdCadastro"] = idDvd;
+
             return View();
         }
 
         [HttpPost]
-        public IActionResult CadastrarUsuario(UsuarioRequest usuario)
+        public IActionResult CadastrarUsuario(UsuarioRequest usuario, int idLivroCadastro, int idCdCadastro, int idDvdCadastro)
         {
             var request = MapearParaUsuario(usuario);
 
-            _usuarioServico.Cadastrar(request);
+            if (idLivroCadastro != 0)
+            {
+                request.IdLivro = idLivroCadastro;
+                _usuarioServico.Cadastrar(request);
+                _emprestimoServico.EfetuarEmprestimoLivro(idLivroCadastro);
+            }
 
-            return RedirectToAction("ListarUsuarios");
+            if (idCdCadastro != 0)
+            {
+                request.IdCd = idCdCadastro;
+                _usuarioServico.Cadastrar(request);
+                _emprestimoServico.EfetuarEmprestimoCd(idCdCadastro);
+            }
+
+            if (idDvdCadastro != 0)
+            {
+                request.IdDvd = idDvdCadastro;
+                _usuarioServico.Cadastrar(request);
+                _emprestimoServico.EfetuarEmprestimoDvd(idDvdCadastro);
+            }
+            
+            return View("/Views/Emprestimo/Sucesso.cshtml");
         }
 
         private Usuario MapearParaUsuario(UsuarioRequest usuario)
@@ -81,6 +108,21 @@ namespace ColecaoLivrosCDsDVDs.Controllers
                 throw ex;
             }
         }
+
+        [HttpPost]
+        public IActionResult DetalharUsuario(int idLivro)
+        {
+            try
+            {
+                var usuario = _usuarioServico.DetalharUsuario(idLivro);
+                return View(usuario);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
         [HttpGet]
         public IActionResult ListarUsuarios()
@@ -148,10 +190,10 @@ namespace ColecaoLivrosCDsDVDs.Controllers
             var usuario = _usuarioServico.EfetuarLogin(login, senha);
             if (usuario != null)
             {
-                TempData["loginId"] = usuario.Id;
+                TempData["idLogin"] = usuario.Id;
                 TempData["login"] = usuario.Login;
 
-                return Redirect("/Emprestimo/Index");
+                return Redirect("Index");
             }
 
             return Redirect("Index");
@@ -164,6 +206,11 @@ namespace ColecaoLivrosCDsDVDs.Controllers
             ViewData["login"] = null;
 
             return RedirectToAction("Index");
+        }
+
+        public IActionResult PaginaInexistente()
+        {
+            return View("/Views/Usuario/LoginInexistente");
         }
     }
 }

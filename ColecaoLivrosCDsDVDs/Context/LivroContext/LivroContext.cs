@@ -13,6 +13,7 @@ namespace ColecaoLivrosCDsDVDs.Context.LivroContext
         {
             _aplicacaoContext = aplicacaoContext;
         }
+
         public void Cadastrar(Livro livro)
         {
             _aplicacaoContext.Livros.Add(livro);
@@ -57,6 +58,13 @@ namespace ColecaoLivrosCDsDVDs.Context.LivroContext
             var livroExcluir = BuscarPorId(id);
 
             _aplicacaoContext.Livros.Remove(livroExcluir);
+            _aplicacaoContext.SaveChanges();
+        }
+
+        public void EfetuarEmprestimo(int id)
+        {
+            var livroDoBanco = _aplicacaoContext.Livros.FirstOrDefault(x => x.Id == id);
+            livroDoBanco.Status = Enum.Status.Indisponivel;
             _aplicacaoContext.SaveChanges();
         }
     }

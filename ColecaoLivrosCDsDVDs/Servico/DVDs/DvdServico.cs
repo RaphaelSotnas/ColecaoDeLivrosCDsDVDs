@@ -1,5 +1,6 @@
 ﻿using ColecaoLivrosCDsDVDs.Models.Entidades;
 using ColecaoLivrosCDsDVDs.Repository;
+using ColecaoLivrosCDsDVDs.Repository.EmprestimoRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,12 @@ namespace ColecaoLivrosCDsDVDs.Servico.DVDs
     public class DvdServico : IDvdServico
     {
         private readonly IColecaoRepository _colecaoRepository;
-        public DvdServico(IColecaoRepository colecaoRepository)
+        private readonly IEmprestimoRepository _emprestimoRepository;
+        public DvdServico(IColecaoRepository colecaoRepository,
+            IEmprestimoRepository emprestimoRepository)
         {
             _colecaoRepository = colecaoRepository;
+            _emprestimoRepository = emprestimoRepository;
         }
 
         public void Atualizar(DVD dvd)
@@ -44,6 +48,18 @@ namespace ColecaoLivrosCDsDVDs.Servico.DVDs
             try
             {
                 _colecaoRepository.CadastrarDvd(cd);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void EfetuarEmprestimoDvd(int idDvd)
+        {
+            try
+            {
+                _emprestimoRepository.EfetuarEmprestimoDvd(idDvd);
             }
             catch (Exception ex)
             {

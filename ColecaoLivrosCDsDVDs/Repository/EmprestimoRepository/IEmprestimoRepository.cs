@@ -1,14 +1,15 @@
 ﻿using ColecaoLivrosCDsDVDs.Models.Entidades;
-using ColecaoLivrosCDsDVDs.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ColecaoLivrosCDsDVDs.Context.DvdContext
+namespace ColecaoLivrosCDsDVDs.Repository.EmprestimoRepository
 {
-    public interface IDvdContext : IGenericoRepository<DVD>
+    public interface IEmprestimoRepository
     {
+        void EfetuarEmprestimoLivro(int idLivro);
+        void EfetuarEmprestimoCd(int idCd);
         void EfetuarEmprestimoDvd(int idDvd);
     }
 }

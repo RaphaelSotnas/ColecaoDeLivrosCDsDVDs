@@ -1,5 +1,6 @@
 ﻿using ColecaoLivrosCDsDVDs.Models.Entidades;
 using ColecaoLivrosCDsDVDs.Repository;
+using ColecaoLivrosCDsDVDs.Repository.EmprestimoRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,13 @@ namespace ColecaoLivrosCDsDVDs.Servico.Livros
 {
     public class LivroServico : ILivroServico
     {
-        protected readonly IColecaoRepository _colecaoRepository;
-        public LivroServico(IColecaoRepository colecaoRepository)
+        private readonly IColecaoRepository _colecaoRepository;
+        private readonly IEmprestimoRepository _emprestimoRepository;
+        public LivroServico(IColecaoRepository colecaoRepository,
+            IEmprestimoRepository emprestimoRepository)
         {
             _colecaoRepository = colecaoRepository;
+            _emprestimoRepository = emprestimoRepository;
         }
 
         public void Cadastrar(Livro livro)
@@ -68,6 +72,18 @@ namespace ColecaoLivrosCDsDVDs.Servico.Livros
             try
             {
                 return _colecaoRepository.ListarLivros();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void EfetuarEmprestimoLivro(int idLivro)
+        {
+            try
+            {
+                _emprestimoRepository.EfetuarEmprestimoLivro(idLivro);
             }
             catch (Exception ex)
             {

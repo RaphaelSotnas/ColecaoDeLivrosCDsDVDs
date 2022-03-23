@@ -11,5 +11,6 @@ namespace ColecaoLivrosCDsDVDs.Servico
     public interface IUsuarioServico : IGenericoRepository<Usuario>
     {
         Usuario EfetuarLogin(string login, string senha);
+        Usuario DetalharUsuario(int id);
     }
 }

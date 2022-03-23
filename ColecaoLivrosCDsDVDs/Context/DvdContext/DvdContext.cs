@@ -59,6 +59,12 @@ namespace ColecaoLivrosCDsDVDs.Context.DvdContext
                     .OrderBy(x => x.Nome)
                     .ToList();
         }
-    
+
+        public void EfetuarEmprestimoDvd(int idDvd)
+        {
+            var dvdDoBanco = _aplicacaoContext.DVDs.FirstOrDefault(x => x.Id == idDvd);
+            dvdDoBanco.Status = Enum.Status.Indisponivel;
+            _aplicacaoContext.SaveChanges();
+        }
     }
 }

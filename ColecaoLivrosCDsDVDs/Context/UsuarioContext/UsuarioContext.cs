@@ -1,4 +1,5 @@
 ﻿using ColecaoLivrosCDsDVDs.Models;
+using ColecaoLivrosCDsDVDs.Models.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,6 +64,16 @@ namespace ColecaoLivrosCDsDVDs.Context
         public Usuario EfetuarLogin(string login, string senha)
         {
             return _aplicacaoContext.Usuarios.FirstOrDefault(x => x.Login == login);
+        }
+
+        public Usuario DetalharUsuario(int id)
+        {
+            return _aplicacaoContext.Usuarios.FirstOrDefault(x => x.IdLivro == id);
+        }
+
+        public void EfetuarEmprestimo(Livro livro)
+        {
+            throw new NotImplementedException();
         }
     }
 }

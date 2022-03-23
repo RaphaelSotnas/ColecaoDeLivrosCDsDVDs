@@ -59,5 +59,13 @@ namespace ColecaoLivrosCDsDVDs.Context.CdContext
             _aplicacaoContext.CDs.Remove(cdExcluir);
             _aplicacaoContext.SaveChanges();
         }
+
+        public void EfetuarEmprestimoCd(int idCd)
+        {
+            var cdDoBanco = _aplicacaoContext.CDs.FirstOrDefault(x => x.Id == idCd);
+            cdDoBanco.Status = Enum.Status.Indisponivel;
+            _aplicacaoContext.SaveChanges();
+        }
+
     }
 }

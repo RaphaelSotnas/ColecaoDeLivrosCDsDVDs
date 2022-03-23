@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ColecaoLivrosCDsDVDs.Models.Entidades;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -26,5 +27,11 @@ namespace ColecaoLivrosCDsDVDs.Contrato
 
         [Required]
         public string Telefone { get; set; }
+
+        public Livro Livro { get; set; } 
+
+        public CD CD { get; set; }
+
+        public DVD DVD { get; set; }
     }
 }

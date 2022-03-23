@@ -9,6 +9,6 @@ namespace ColecaoLivrosCDsDVDs.Context.CdContext
 {
     public interface ICdContext : IGenericoRepository<CD>
     {
-        
+        void EfetuarEmprestimoCd(int idCd);
     }
 }

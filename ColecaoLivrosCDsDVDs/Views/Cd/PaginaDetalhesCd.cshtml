@@ -9,28 +9,28 @@
 <div>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Nome)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Nome)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Cantor)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Cantor)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.GeneroMusical)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.GeneroMusical)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Status)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Status)
         </dd>
     </dl>
@@ -39,3 +39,22 @@
     <a asp-action="PaginaEditarCd" asp-route-id="@Model.Id">Editar</a> |
     <a asp-action="ListarCds">Voltar</a>
 </div>
+
+@{
+    if (Model.Status == ColecaoLivrosCDsDVDs.Enum.Status.Disponivel)
+    {
+        <form method="post" asp-controller="Usuario" asp-action="PaginaCadastrarUsuario">
+            <input type="submit" value="Pegar Emprestado" />
+            <input type="hidden" value="@Html.DisplayFor(model => model.Id)" name="idCd" />
+        </form>
+    }
+    else
+    {
+        <div>
+            <form method="post" asp-controller="Usuario" asp-action="DetalharUsuario">
+                <input type="submit" value="Detalhes do usuário do Cd" />
+                <input type="hidden" value="@Html.DisplayFor(model => model.Id)" name="idCd" />
+            </form>
+        </div>
+    }
+}

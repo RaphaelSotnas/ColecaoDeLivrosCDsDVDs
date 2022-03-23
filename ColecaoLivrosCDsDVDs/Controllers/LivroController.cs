@@ -1,4 +1,5 @@
 ﻿using ColecaoLivrosCDsDVDs.Contrato;
+using ColecaoLivrosCDsDVDs.Models;
 using ColecaoLivrosCDsDVDs.Models.Entidades;
 using ColecaoLivrosCDsDVDs.Servico.Livros;
 using Microsoft.AspNetCore.Mvc;

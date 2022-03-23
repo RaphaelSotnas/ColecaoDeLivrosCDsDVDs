@@ -69,6 +69,15 @@ namespace ColecaoLivrosCDsDVDs.Repository
                 throw new Exception("Senha e login incompatíveis");
             return usuarioDoBanco;
         }
+
+        public Usuario DetalharUsuario(int id)
+        {
+            var loginDoBanco = _usuarioContext.DetalharUsuario(id);
+            if (loginDoBanco == null)
+                throw new Exception("Este login não existe.");
+            return loginDoBanco;
+        }
+
         #endregion
 
         #region Livro

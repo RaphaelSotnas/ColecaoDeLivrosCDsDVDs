@@ -86,5 +86,17 @@ namespace ColecaoLivrosCDsDVDs.Servico
                 throw ex;
             }
         }
+
+        public Usuario DetalharUsuario(int id)
+        {
+            try
+            {
+                return _colecaoRepository.DetalharUsuario(id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
