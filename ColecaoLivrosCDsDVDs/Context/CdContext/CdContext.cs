@@ -67,5 +67,9 @@ namespace ColecaoLivrosCDsDVDs.Context.CdContext
             _aplicacaoContext.SaveChanges();
         }
 
+        public List<CD> ListarDisponiveis()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

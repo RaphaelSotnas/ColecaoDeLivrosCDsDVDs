@@ -37,7 +37,7 @@ namespace ColecaoLivrosCDsDVDs.Repository
 
         Livro BuscarLivroPorId(int id);
 
-        public List<Livro> ListarLivros();
+        List<Livro> ListarLivros();
 
         void AtualizarLivro(Livro livro);
 

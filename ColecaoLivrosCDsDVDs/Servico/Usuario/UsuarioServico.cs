@@ -123,5 +123,10 @@ namespace ColecaoLivrosCDsDVDs.Servico
                 throw ex;
             }
         }
+
+        public List<Usuario> ListarDisponiveis()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

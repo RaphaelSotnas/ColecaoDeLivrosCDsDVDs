@@ -66,5 +66,10 @@ namespace ColecaoLivrosCDsDVDs.Context.DvdContext
             dvdDoBanco.Status = Enum.Status.Indisponivel;
             _aplicacaoContext.SaveChanges();
         }
+
+        public List<DVD> ListarDisponiveis()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

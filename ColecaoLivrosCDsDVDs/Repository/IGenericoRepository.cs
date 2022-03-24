@@ -13,6 +13,7 @@ namespace ColecaoLivrosCDsDVDs.Repository
         T BuscarPorId(int id);
 
         List<T> Listar();
+
         void Atualizar(T entidade);
 
         void Excluir(int id);

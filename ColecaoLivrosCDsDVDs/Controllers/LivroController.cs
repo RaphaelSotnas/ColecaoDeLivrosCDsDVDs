@@ -77,7 +77,7 @@ namespace ColecaoLivrosCDsDVDs.Controllers
         }
 
         [HttpGet]
-        public IActionResult ListarLivros()
+        public IActionResult ListarLivros(string sortOrder)
         {
             try
             {

@@ -81,5 +81,10 @@ namespace ColecaoLivrosCDsDVDs.Context
         {
             return _aplicacaoContext.Usuarios.FirstOrDefault(x => x.IdDvd == idDvd);
         }
+
+        public List<Usuario> ListarDisponiveis()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
