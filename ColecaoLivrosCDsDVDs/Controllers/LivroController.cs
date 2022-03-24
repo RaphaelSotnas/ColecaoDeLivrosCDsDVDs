@@ -31,22 +31,11 @@ namespace ColecaoLivrosCDsDVDs.Controllers
         [HttpPost]
         public IActionResult CadastrarLivro(LivroRequest request)
         {
-            var livro = MapearLivro(request);
+            var livro = new Livro(request); 
 
             _livroServico.Cadastrar(livro);
 
             return RedirectToAction("ListarLivros");
-        }
-
-        private Livro MapearLivro(LivroRequest request)
-        {
-            return new Livro
-            {
-                Autor = request.Autor,
-                Genero = request.Genero,
-                Nome = request.Nome,
-                Status = request.Status,
-            };
         }
 
         [HttpGet]
@@ -77,7 +66,7 @@ namespace ColecaoLivrosCDsDVDs.Controllers
         }
 
         [HttpGet]
-        public IActionResult ListarLivros(string sortOrder)
+        public IActionResult ListarLivros()
         {
             try
             {

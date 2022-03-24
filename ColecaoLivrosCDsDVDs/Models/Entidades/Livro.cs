@@ -1,4 +1,5 @@
-﻿using ColecaoLivrosCDsDVDs.Enum;
+﻿using ColecaoLivrosCDsDVDs.Contrato;
+using ColecaoLivrosCDsDVDs.Enum;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -9,6 +10,19 @@ namespace ColecaoLivrosCDsDVDs.Models.Entidades
 {
     public class Livro
     {
+        private Livro()
+        {
+
+        }
+
+        public Livro(LivroRequest livroRequest)
+        {
+            Nome = livroRequest.Nome;
+            Genero = livroRequest.Genero;
+            Autor = livroRequest.Autor;
+            Status = livroRequest.Status;
+        }
+
         public int Id { get; set; }
 
         public string Nome { get; set; }

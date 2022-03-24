@@ -31,22 +31,11 @@ namespace ColecaoLivrosCDsDVDs.Controllers
         [HttpPost]
         public IActionResult CadastrarCd(CdRequest cdrequest)
         {
-            var cd = MapearCd(cdrequest);
+            var cd = new CD(cdrequest);
 
             _cdServico.Cadastrar(cd);
 
             return RedirectToAction("ListarCds");
-        }
-
-        private CD MapearCd(CdRequest cdrequest)
-        {
-            return new CD
-            {
-                Cantor = cdrequest.Cantor,
-                GeneroMusical = cdrequest.GeneroMusical,
-                Nome = cdrequest.Nome,
-                Status = cdrequest.Status
-            };
         }
 
         [HttpGet]

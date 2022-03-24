@@ -31,21 +31,11 @@ namespace ColecaoLivrosCDsDVDs.Controllers
         [HttpPost]
         public IActionResult CadastrarDvd(DvdRequest dvdRequest)
         {
-            var dvd = MapearParaDvd(dvdRequest);
+            var dvd = new DVD(dvdRequest);
 
             _dvdServico.Cadastrar(dvd);
 
             return RedirectToAction("ListarDvds");
-        }
-
-        private DVD MapearParaDvd(DvdRequest dvdRequest)
-        {
-            return new DVD
-            {
-                Genero = dvdRequest.Genero,
-                Nome = dvdRequest.Nome,
-                Status = dvdRequest.Status
-            };
         }
 
         [HttpGet]

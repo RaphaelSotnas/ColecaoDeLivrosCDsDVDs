@@ -1,4 +1,5 @@
 ﻿using ColecaoLivrosCDsDVDs.Enum;
+using ColecaoLivrosCDsDVDs.Models.Contrato;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -9,6 +10,18 @@ namespace ColecaoLivrosCDsDVDs.Models.Entidades
 {
     public class DVD
     {
+        private DVD()
+        {
+
+        }
+
+        public DVD(DvdRequest dvdRequest)
+        {
+            Nome = dvdRequest.Nome;
+            Genero = dvdRequest.Genero;
+            Status = dvdRequest.Status;
+        }
+
         public int Id { get; set; }
 
         public string Nome { get; set; }
