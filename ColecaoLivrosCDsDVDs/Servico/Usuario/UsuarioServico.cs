@@ -27,6 +27,7 @@ namespace ColecaoLivrosCDsDVDs.Servico
                 throw ex;
             }
         }
+
         public Usuario BuscarPorId(int id)
         {
             try
@@ -87,11 +88,35 @@ namespace ColecaoLivrosCDsDVDs.Servico
             }
         }
 
-        public Usuario DetalharUsuario(int id)
+        public Usuario DetalharUsuarioLivro(int idLivro)
         {
             try
             {
-                return _colecaoRepository.DetalharUsuario(id);
+                return _colecaoRepository.DetalharUsuarioLivro(idLivro);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Usuario DetalharUsuarioCd(int idCd)
+        {
+            try
+            {
+                return _colecaoRepository.DetalharUsuarioCd(idCd);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Usuario DetalharUsuarioDvd(int idDvd)
+        {
+            try
+            {
+                return _colecaoRepository.DetalharUsuarioDvd(idDvd);
             }
             catch (Exception ex)
             {

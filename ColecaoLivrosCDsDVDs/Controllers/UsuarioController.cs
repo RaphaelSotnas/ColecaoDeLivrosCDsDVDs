@@ -110,19 +110,34 @@ namespace ColecaoLivrosCDsDVDs.Controllers
         }
 
         [HttpPost]
-        public IActionResult DetalharUsuario(int idLivro)
+        public IActionResult DetalharUsuario(int idLivro, int idCd, int idDvd)
         {
             try
             {
-                var usuario = _usuarioServico.DetalharUsuario(idLivro);
-                return View(usuario);
+                if(idLivro != 0)
+                {
+                    var usuario = _usuarioServico.DetalharUsuarioLivro(idLivro);
+                    return View(usuario);
+                }
+
+                if (idCd != 0)
+                {
+                    var usuario = _usuarioServico.DetalharUsuarioCd(idCd);
+                    return View(usuario);
+                }
+
+                if (idDvd != 0)
+                {
+                    var usuario = _usuarioServico.DetalharUsuarioDvd(idDvd);
+                    return View(usuario);
+                }
+                return NotFound();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-
 
         [HttpGet]
         public IActionResult ListarUsuarios()

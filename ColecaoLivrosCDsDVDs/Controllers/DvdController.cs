@@ -16,6 +16,7 @@ namespace ColecaoLivrosCDsDVDs.Controllers
         {
             _dvdServico = dvdServico;
         }
+
         public IActionResult Index()
         {
             return View();
@@ -54,6 +55,26 @@ namespace ColecaoLivrosCDsDVDs.Controllers
             {
                 var dvds = _dvdServico.Listar();
                 return View(dvds);
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
+
+        [HttpGet]
+        public IActionResult PaginaDetalhesDvd(int id)
+        {
+            try
+            {
+                if (id == 0)
+                    return BadRequest();
+
+                var dvd = _dvdServico.BuscarPorId(id);
+                if (dvd == null)
+                    return NotFound();
+
+                return View(dvd);
             }
             catch (Exception)
             {

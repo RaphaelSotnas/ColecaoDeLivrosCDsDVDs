@@ -16,13 +16,18 @@ namespace ColecaoLivrosCDsDVDs.Repository
         Usuario BuscarUsuarioPorId(int id);
 
         List<Usuario> ListarUsuarios();
+
         void AtualizarUsuario(Usuario pessooa);
 
         void ExcluirUsuario(int id);
 
         Usuario EfetuarLogin(string login, string senha);
 
-        Usuario DetalharUsuario(int id);
+        Usuario DetalharUsuarioLivro(int idLivro);
+
+        Usuario DetalharUsuarioCd(int idCd);
+
+        Usuario DetalharUsuarioDvd(int idDvd);
 
         #endregion
 

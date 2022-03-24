@@ -70,14 +70,6 @@ namespace ColecaoLivrosCDsDVDs.Repository
             return usuarioDoBanco;
         }
 
-        public Usuario DetalharUsuario(int id)
-        {
-            var loginDoBanco = _usuarioContext.DetalharUsuario(id);
-            if (loginDoBanco == null)
-                throw new Exception("Este login não existe.");
-            return loginDoBanco;
-        }
-
         #endregion
 
         #region Livro
@@ -111,6 +103,14 @@ namespace ColecaoLivrosCDsDVDs.Repository
                 throw new Exception("As informações fornecidas para a edição são iguais as atuais");
 
             _livroContext.Atualizar(livro);
+        }
+
+        public Usuario DetalharUsuarioLivro(int id)
+        {
+            var loginDoBanco = _usuarioContext.DetalharUsuarioLivro(id);
+            if (loginDoBanco == null)
+                throw new Exception("Este login não existe.");
+            return loginDoBanco;
         }
 
         #endregion
@@ -149,6 +149,14 @@ namespace ColecaoLivrosCDsDVDs.Repository
             _cdContext.Atualizar(cd);
         }
 
+        public Usuario DetalharUsuarioCd(int idCd)
+        {
+            var loginDoBanco = _usuarioContext.DetalharUsuarioCd(idCd);
+            if (loginDoBanco == null)
+                throw new Exception("Este login não existe.");
+            return loginDoBanco;
+        }
+
         #endregion
 
         #region DVD 
@@ -170,12 +178,25 @@ namespace ColecaoLivrosCDsDVDs.Repository
 
         public void AtualizarDvd(DVD dvd)
         {
+            var dvdDoBanco = BuscarDvdPorId(dvd.Id);
+            if (dvdDoBanco.Nome == dvd.Nome
+                 && dvdDoBanco.Genero == dvd.Genero
+                 && dvdDoBanco.Status == dvd.Status)
+                throw new Exception("As informações fornecidas para a edição são iguais as atuais");
             _dvdContext.Atualizar(dvd);
         }
 
         public void ExcluirDvd(int id)
         {
             _dvdContext.Excluir(id);
+        }
+
+        public Usuario DetalharUsuarioDvd(int idDvd)
+        {
+            var loginDoBanco = _usuarioContext.DetalharUsuarioDvd(idDvd);
+            if (loginDoBanco == null)
+                throw new Exception("Este login não existe.");
+            return loginDoBanco;
         }
 
         #endregion

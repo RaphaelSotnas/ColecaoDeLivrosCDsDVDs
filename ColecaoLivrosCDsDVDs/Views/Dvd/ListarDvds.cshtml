@@ -16,28 +16,24 @@
                 @Html.DisplayNameFor(model => model.Nome)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Genero)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Status)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model) 
+{
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Genero)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
                 <a asp-action="PaginaEditarDvd" asp-route-id="@item.Id">Editar</a> |
+                <a asp-action="PaginaDetalhesDvd" asp-route-id="@item.Id">Detalhes</a> |
                 <a asp-action="PaginaExcluirDvd" asp-route-id="@item.Id">Deletar</a>
             </td>
         </tr>

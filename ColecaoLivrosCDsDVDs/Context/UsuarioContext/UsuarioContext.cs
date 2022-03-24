@@ -14,6 +14,7 @@ namespace ColecaoLivrosCDsDVDs.Context
         {
             _aplicacaoContext = aplicacaoContext;
         }
+
         public void Cadastrar(Usuario usuario)
         {
             _aplicacaoContext.Usuarios.Add(usuario);
@@ -29,6 +30,7 @@ namespace ColecaoLivrosCDsDVDs.Context
             _aplicacaoContext.Usuarios.Update(objUsuario);
             _aplicacaoContext.SaveChanges();
         }
+
         private object MapearParaUsuarioAtualizada(Usuario usuario, Usuario objUsuario)
         {
             objUsuario.Nome = usuario.Nome;
@@ -44,7 +46,6 @@ namespace ColecaoLivrosCDsDVDs.Context
         {
             return _aplicacaoContext.Usuarios.FirstOrDefault(x => x.Id == id);
         }
-
 
         public void Excluir(int id)
         {
@@ -66,14 +67,19 @@ namespace ColecaoLivrosCDsDVDs.Context
             return _aplicacaoContext.Usuarios.FirstOrDefault(x => x.Login == login);
         }
 
-        public Usuario DetalharUsuario(int id)
+        public Usuario DetalharUsuarioLivro(int idLivro)
         {
-            return _aplicacaoContext.Usuarios.FirstOrDefault(x => x.IdLivro == id);
+            return _aplicacaoContext.Usuarios.FirstOrDefault(x => x.IdLivro == idLivro);
         }
 
-        public void EfetuarEmprestimo(Livro livro)
+        public Usuario DetalharUsuarioCd(int idCd)
         {
-            throw new NotImplementedException();
+            return _aplicacaoContext.Usuarios.FirstOrDefault(x => x.IdCd == idCd);
+        }
+
+        public Usuario DetalharUsuarioDvd(int idDvd)
+        {
+            return _aplicacaoContext.Usuarios.FirstOrDefault(x => x.IdDvd == idDvd);
         }
     }
 }

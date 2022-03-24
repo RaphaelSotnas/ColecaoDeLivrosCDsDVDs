@@ -41,7 +41,14 @@ namespace ColecaoLivrosCDsDVDs.Servico.Emprestimo
 
         public void EfetuarEmprestimoDvd(int idDvd)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _emprestimoRepository.EfetuarEmprestimoDvd(idDvd);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }
