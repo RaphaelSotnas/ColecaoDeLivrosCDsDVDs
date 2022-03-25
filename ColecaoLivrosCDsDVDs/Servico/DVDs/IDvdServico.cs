@@ -9,6 +9,6 @@ namespace ColecaoLivrosCDsDVDs.Servico.DVDs
 {
     public interface IDvdServico : IGenericoRepository<DVD>
     {
-        void EfetuarEmprestimoDvd(int idDvd);
+        bool EfetuarEmprestimoDvd(int idDvd);
     }
 }

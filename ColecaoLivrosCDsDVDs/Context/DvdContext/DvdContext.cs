@@ -13,7 +13,7 @@ namespace ColecaoLivrosCDsDVDs.Context.DvdContext
         {
             _aplicacaoContext = aplicacaoContext;
         }
-        public void Atualizar(DVD dvd)
+        public bool Atualizar(DVD dvd)
         {
             var dvdDoBanco = BuscarPorId(dvd.Id);
 
@@ -21,6 +21,8 @@ namespace ColecaoLivrosCDsDVDs.Context.DvdContext
 
             _aplicacaoContext.DVDs.Update(dvdAtualizado);
             _aplicacaoContext.SaveChanges();
+
+            return true;
         }
 
         private DVD MapearParaDvd(DVD dvdDoBanco, DVD dvd)
@@ -37,18 +39,22 @@ namespace ColecaoLivrosCDsDVDs.Context.DvdContext
             return _aplicacaoContext.DVDs.FirstOrDefault(x => x.Id == id);
         }
 
-        public void Cadastrar(DVD cd)
+        public bool Cadastrar(DVD cd)
         {
             _aplicacaoContext.DVDs.Add(cd);
             _aplicacaoContext.SaveChanges();
+
+            return true;
         }
 
-        public void Excluir(int id)
+        public bool Excluir(int id)
         {
             var dvdExcluir = BuscarPorId(id);
 
             _aplicacaoContext.DVDs.Remove(dvdExcluir);
             _aplicacaoContext.SaveChanges();
+
+            return true;
         }
 
         public List<DVD> Listar()
@@ -60,11 +66,13 @@ namespace ColecaoLivrosCDsDVDs.Context.DvdContext
                     .ToList();
         }
 
-        public void EfetuarEmprestimoDvd(int idDvd)
+        public bool EfetuarEmprestimoDvd(int idDvd)
         {
             var dvdDoBanco = _aplicacaoContext.DVDs.FirstOrDefault(x => x.Id == idDvd);
             dvdDoBanco.Status = Enum.Status.Indisponivel;
             _aplicacaoContext.SaveChanges();
+
+            return true;
         }
 
         public List<DVD> ListarDisponiveis()

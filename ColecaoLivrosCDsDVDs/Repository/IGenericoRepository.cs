@@ -8,14 +8,14 @@ namespace ColecaoLivrosCDsDVDs.Repository
 {
     public interface IGenericoRepository<T>
     {
-        void Cadastrar(T entidade);
+        bool Cadastrar(T entidade);
 
         T BuscarPorId(int id);
 
         List<T> Listar();
 
-        void Atualizar(T entidade);
+        bool Atualizar(T entidade);
 
-        void Excluir(int id);
+        bool Excluir(int id);
     }
 }

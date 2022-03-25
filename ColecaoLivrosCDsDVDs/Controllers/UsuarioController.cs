@@ -42,6 +42,9 @@ namespace ColecaoLivrosCDsDVDs.Controllers
         [HttpPost]
         public IActionResult CadastrarUsuario(UsuarioRequest usuario, int idLivroCadastro, int idCdCadastro, int idDvdCadastro)
         {
+            if (usuario == null)
+                return BadRequest();
+
             var request = MapearParaUsuario(usuario);
 
             if (idLivroCadastro != 0)

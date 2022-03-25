@@ -19,11 +19,11 @@ namespace ColecaoLivrosCDsDVDs.Servico.Livros
             _emprestimoRepository = emprestimoRepository;
         }
 
-        public void Cadastrar(Livro livro)
+        public bool Cadastrar(Livro livro)
         {
             try
             {
-                _colecaoRepository.CadastrarLivro(livro);
+                return _colecaoRepository.CadastrarLivro(livro);
             }
             catch (Exception ex)
             {
@@ -31,11 +31,11 @@ namespace ColecaoLivrosCDsDVDs.Servico.Livros
             }
         }
 
-        public void Atualizar(Livro livro)
+        public bool Atualizar(Livro livro)
         {
             try
             {
-                _colecaoRepository.AtualizarLivro(livro);
+                return _colecaoRepository.AtualizarLivro(livro);
             }
             catch (Exception ex)
             {
@@ -55,11 +55,11 @@ namespace ColecaoLivrosCDsDVDs.Servico.Livros
             }
         }
 
-        public void Excluir(int id)
+        public bool Excluir(int id)
         {
             try
             {
-                _colecaoRepository.ExcluirLivro(id);
+                return _colecaoRepository.ExcluirLivro(id);
             }
             catch (Exception ex)
             {
@@ -79,11 +79,11 @@ namespace ColecaoLivrosCDsDVDs.Servico.Livros
             }
         }
 
-        public void EfetuarEmprestimoLivro(int idLivro)
+        public bool EfetuarEmprestimoLivro(int idLivro)
         {
             try
             {
-                _emprestimoRepository.EfetuarEmprestimoLivro(idLivro);
+                return _emprestimoRepository.EfetuarEmprestimoLivro(idLivro);
             }
             catch (Exception ex)
             {

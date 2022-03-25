@@ -15,11 +15,11 @@ namespace ColecaoLivrosCDsDVDs.Servico.Emprestimo
             _emprestimoRepository = emprestimoRepository;
         }
 
-        public void EfetuarEmprestimoLivro(int id)
+        public bool EfetuarEmprestimoLivro(int id)
         {
             try
             {
-                _emprestimoRepository.EfetuarEmprestimoLivro(id);
+                return _emprestimoRepository.EfetuarEmprestimoLivro(id);
             }
             catch (Exception ex)
             {
@@ -27,11 +27,11 @@ namespace ColecaoLivrosCDsDVDs.Servico.Emprestimo
             }
         }
 
-        public void EfetuarEmprestimoCd(int id)
+        public bool EfetuarEmprestimoCd(int id)
         {
             try
             {
-                _emprestimoRepository.EfetuarEmprestimoCd(id);
+                return _emprestimoRepository.EfetuarEmprestimoCd(id);
             }
             catch (Exception ex)
             {
@@ -39,11 +39,11 @@ namespace ColecaoLivrosCDsDVDs.Servico.Emprestimo
             }
         }
 
-        public void EfetuarEmprestimoDvd(int idDvd)
+        public bool EfetuarEmprestimoDvd(int idDvd)
         {
             try
             {
-                _emprestimoRepository.EfetuarEmprestimoDvd(idDvd);
+                return _emprestimoRepository.EfetuarEmprestimoDvd(idDvd);
             }
             catch (Exception ex)
             {

@@ -15,13 +15,15 @@ namespace ColecaoLivrosCDsDVDs.Context
             _aplicacaoContext = aplicacaoContext;
         }
 
-        public void Cadastrar(Usuario usuario)
+        public bool Cadastrar(Usuario usuario)
         {
             _aplicacaoContext.Usuarios.Add(usuario);
             _aplicacaoContext.SaveChanges();
+
+            return true;
         }
 
-        public void Atualizar(Usuario usuario)
+        public bool Atualizar(Usuario usuario)
         {
             var objUsuario = BuscarPorId(usuario.Id);
 
@@ -29,6 +31,8 @@ namespace ColecaoLivrosCDsDVDs.Context
 
             _aplicacaoContext.Usuarios.Update(objUsuario);
             _aplicacaoContext.SaveChanges();
+
+            return true;
         }
 
         private object MapearParaUsuarioAtualizada(Usuario usuario, Usuario objUsuario)
@@ -47,11 +51,13 @@ namespace ColecaoLivrosCDsDVDs.Context
             return _aplicacaoContext.Usuarios.FirstOrDefault(x => x.Id == id);
         }
 
-        public void Excluir(int id)
+        public bool Excluir(int id)
         {
             var usuarioExcluir = BuscarPorId(id);
             _aplicacaoContext.Usuarios.Remove(usuarioExcluir);
             _aplicacaoContext.SaveChanges();
+
+            return true;
         }
 
         public List<Usuario> Listar()

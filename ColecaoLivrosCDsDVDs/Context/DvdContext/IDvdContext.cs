@@ -9,6 +9,6 @@ namespace ColecaoLivrosCDsDVDs.Context.DvdContext
 {
     public interface IDvdContext : IGenericoRepository<DVD>
     {
-        void EfetuarEmprestimoDvd(int idDvd);
+        bool EfetuarEmprestimoDvd(int idDvd);
     }
 }

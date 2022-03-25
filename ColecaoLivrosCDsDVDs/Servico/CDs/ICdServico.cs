@@ -9,6 +9,6 @@ namespace ColecaoLivrosCDsDVDs.Servico.CDs
 {
     public interface ICdServico : IGenericoRepository<CD>
     {
-        void EfetuarEmprestimoCd(int idCd);
+        bool EfetuarEmprestimoCd(int idCd);
     }
 }

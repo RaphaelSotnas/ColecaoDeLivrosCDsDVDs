@@ -11,15 +11,15 @@ namespace ColecaoLivrosCDsDVDs.Repository
     {
         #region Usuario
 
-        void CadastrarUsuario(Usuario usuario);
+        bool CadastrarUsuario(Usuario usuario);
 
         Usuario BuscarUsuarioPorId(int id);
 
         List<Usuario> ListarUsuarios();
 
-        void AtualizarUsuario(Usuario pessooa);
+        bool AtualizarUsuario(Usuario pessooa);
 
-        void ExcluirUsuario(int id);
+        bool ExcluirUsuario(int id);
 
         Usuario EfetuarLogin(string login, string senha);
 
@@ -33,42 +33,42 @@ namespace ColecaoLivrosCDsDVDs.Repository
 
         #region Livros
 
-        void CadastrarLivro(Livro livro);
+        bool CadastrarLivro(Livro livro);
 
         Livro BuscarLivroPorId(int id);
 
         List<Livro> ListarLivros();
 
-        void AtualizarLivro(Livro livro);
+        bool AtualizarLivro(Livro livro);
 
-        void ExcluirLivro(int id);
+        bool ExcluirLivro(int id);
 
         #endregion
 
         #region Cd
 
-        void CadastrarCd(CD cd);
+        bool CadastrarCd(CD cd);
 
         CD BuscarCdPorId(int id);
 
         public List<CD> ListarCds();
 
-        void AtualizarCd(CD cd);
+        bool AtualizarCd(CD cd);
 
-        void ExcluirCd(int id);
+        bool ExcluirCd(int id);
 
         #endregion
 
         #region Dvd
-        void CadastrarDvd(DVD cd);
+        bool CadastrarDvd(DVD cd);
 
         DVD BuscarDvdPorId(int id);
 
         public List<DVD> ListarDvds();
 
-        void AtualizarDvd(DVD dvd);
+        bool AtualizarDvd(DVD dvd);
 
-        void ExcluirDvd(int id);
+        bool ExcluirDvd(int id);
 
         #endregion
     }

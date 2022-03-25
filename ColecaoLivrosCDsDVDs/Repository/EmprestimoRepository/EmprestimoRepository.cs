@@ -28,19 +28,31 @@ namespace ColecaoLivrosCDsDVDs.Repository.EmprestimoRepository
             _dvdContext = dvdContext;
         }
 
-        public void EfetuarEmprestimoLivro(int idLivro)
+        public bool EfetuarEmprestimoLivro(int idLivro)
         {
-            _livroContext.EfetuarEmprestimo(idLivro);
+            if (idLivro == 0)
+            {
+                throw new Exception("Não foi possível efetuar o empréstimo deste livro, ele não existe.");
+            }
+            return _livroContext.EfetuarEmprestimo(idLivro);
         }
 
-        public void EfetuarEmprestimoCd(int idCd)
+        public bool EfetuarEmprestimoCd(int idCd)
         {
-            _cdContext.EfetuarEmprestimoCd(idCd);
+            if (idCd == 0)
+            {
+                throw new Exception("Não foi possível efetuar o empréstimo deste CD, ele não existe.");
+            }
+            return _cdContext.EfetuarEmprestimoCd(idCd);
         }
 
-        public void EfetuarEmprestimoDvd(int idDvd)
+        public bool EfetuarEmprestimoDvd(int idDvd)
         {
-            _dvdContext.EfetuarEmprestimoDvd(idDvd);
+            if (idDvd == 0)
+            {
+                throw new Exception("Não foi possível efetuar o empréstimo deste DVD, ele não existe.");
+            }
+            return _dvdContext.EfetuarEmprestimoDvd(idDvd);
         }
     }
 }

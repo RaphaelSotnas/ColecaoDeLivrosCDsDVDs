@@ -27,9 +27,16 @@ namespace ColecaoLivrosCDsDVDs.Repository
 
         #region Usuario
 
-        public void CadastrarUsuario(Usuario usuario)
+        public bool CadastrarUsuario(Usuario usuario)
         {
-            _usuarioContext.Cadastrar(usuario);
+            if (usuario == null || usuario.Login == null || usuario.Senha == null ||
+                usuario.Nome == null || usuario.Email == null ||
+                usuario.Telefone == null || usuario.Endereço == null ||
+                usuario.Sobrenome == null)
+            {
+                throw new Exception("Nenhum campo de cadastro pode ser nulo");
+            }
+            return _usuarioContext.Cadastrar(usuario);
         }
 
         public List<Usuario> ListarUsuarios()
@@ -39,10 +46,14 @@ namespace ColecaoLivrosCDsDVDs.Repository
 
         public Usuario BuscarUsuarioPorId(int id)
         {
+            if(id == 0)
+            {
+                throw new Exception("Não foi possível buscar esse usuário, ele não existe.");
+            }
             return _usuarioContext.BuscarPorId(id);
         }
 
-        public void AtualizarUsuario(Usuario usuario)
+        public bool AtualizarUsuario(Usuario usuario)
         {
             var usuarioDoBanco = BuscarUsuarioPorId(usuario.Id);
 
@@ -54,12 +65,16 @@ namespace ColecaoLivrosCDsDVDs.Repository
             {
                 throw new Exception("As informações fornecidas para a edição são iguais as atuais");
             }
-            _usuarioContext.Atualizar(usuario);
+            return _usuarioContext.Atualizar(usuario);
         }
 
-        public void ExcluirUsuario(int id)
+        public bool ExcluirUsuario(int id)
         {
-            _usuarioContext.Excluir(id);
+            if (id == 0)
+            {
+                throw new Exception("Não foi possível excluir esse usuário, ele não existe.");
+            }
+            return _usuarioContext.Excluir(id);
         }
 
         public Usuario EfetuarLogin(string login, string senha)
@@ -74,13 +89,21 @@ namespace ColecaoLivrosCDsDVDs.Repository
 
         #region Livro
 
-        public void CadastrarLivro(Livro livro)
+        public bool CadastrarLivro(Livro livro)
         {
-            _livroContext.Cadastrar(livro);
+            if (livro == null || livro.Autor == null || livro.Nome == null)
+            {
+                throw new Exception("Nenhum campo de cadastro pode ser nulo");
+            }
+            return _livroContext.Cadastrar(livro);
         }
 
         public Livro BuscarLivroPorId(int id)
         {
+            if (id == 0)
+            {
+                throw new Exception("Não foi possível buscar este livro, ele não existe.");
+            }
             return _livroContext.BuscarPorId(id);
         }
 
@@ -89,12 +112,16 @@ namespace ColecaoLivrosCDsDVDs.Repository
             return _livroContext.Listar();
         }
 
-        public void ExcluirLivro(int id)
+        public bool ExcluirLivro(int id)
         {
-            _livroContext.Excluir(id);
+            if (id == 0)
+            {
+                throw new Exception("Não foi possível excluir este livro, ele não existe.");
+            }
+            return _livroContext.Excluir(id);
         }
 
-        public void AtualizarLivro(Livro livro)
+        public bool AtualizarLivro(Livro livro)
         {
             var livroDoBanco = BuscarLivroPorId(livro.Id);
             if (livroDoBanco.Nome == livro.Nome
@@ -102,7 +129,7 @@ namespace ColecaoLivrosCDsDVDs.Repository
                  && livroDoBanco.Genero == livro.Genero)
                 throw new Exception("As informações fornecidas para a edição são iguais as atuais");
 
-            _livroContext.Atualizar(livro);
+            return _livroContext.Atualizar(livro);
         }
 
         public Usuario DetalharUsuarioLivro(int id)
@@ -117,13 +144,21 @@ namespace ColecaoLivrosCDsDVDs.Repository
 
         #region Cd
 
-        public void CadastrarCd(CD cd)
+        public bool CadastrarCd(CD cd)
         {
-            _cdContext.Cadastrar(cd);
+            if (cd == null || cd.Nome == null || cd.Cantor == null)
+            {
+                throw new Exception("Nenhum campo de cadastro pode ser nulo");
+            }
+            return _cdContext.Cadastrar(cd);
         }
 
         public CD BuscarCdPorId(int id)
         {
+            if (id == 0)
+            {
+                throw new Exception("Não foi possível buscar este Cd, ele não existe.");
+            }
             return _cdContext.BuscarPorId(id);
         }
 
@@ -132,12 +167,16 @@ namespace ColecaoLivrosCDsDVDs.Repository
             return _cdContext.Listar();
         }
 
-        public void ExcluirCd(int id)
+        public bool ExcluirCd(int id)
         {
-            _cdContext.Excluir(id);
+            if (id == 0)
+            {
+                throw new Exception("Não foi possível excluir este Cd, ele não existe.");
+            }
+            return _cdContext.Excluir(id);
         }
 
-        public void AtualizarCd(CD cd)
+        public bool AtualizarCd(CD cd)
         {
             var cdDoBanco = BuscarCdPorId(cd.Id);
             if (cdDoBanco.Nome == cd.Nome
@@ -146,7 +185,7 @@ namespace ColecaoLivrosCDsDVDs.Repository
                  && cdDoBanco.Status == cd.Status)
                 throw new Exception("As informações fornecidas para a edição são iguais as atuais");
 
-            _cdContext.Atualizar(cd);
+            return _cdContext.Atualizar(cd);
         }
 
         public Usuario DetalharUsuarioCd(int idCd)
@@ -161,13 +200,21 @@ namespace ColecaoLivrosCDsDVDs.Repository
 
         #region DVD 
 
-        public void CadastrarDvd(DVD cd)
+        public bool CadastrarDvd(DVD cd)
         {
-            _dvdContext.Cadastrar(cd);
+            if (cd == null || cd.Nome == null)
+            {
+                throw new Exception("Nenhum campo de cadastro pode ser nulo");
+            }
+            return _dvdContext.Cadastrar(cd);
         }
 
         public DVD BuscarDvdPorId(int id)
         {
+            if (id == 0)
+            {
+                throw new Exception("Não foi possível buscar este Dvd, ele não existe.");
+            }
             return _dvdContext.BuscarPorId(id);
         }
 
@@ -176,19 +223,23 @@ namespace ColecaoLivrosCDsDVDs.Repository
             return _dvdContext.Listar();
         } 
 
-        public void AtualizarDvd(DVD dvd)
+        public bool AtualizarDvd(DVD dvd)
         {
             var dvdDoBanco = BuscarDvdPorId(dvd.Id);
             if (dvdDoBanco.Nome == dvd.Nome
                  && dvdDoBanco.Genero == dvd.Genero
                  && dvdDoBanco.Status == dvd.Status)
                 throw new Exception("As informações fornecidas para a edição são iguais as atuais");
-            _dvdContext.Atualizar(dvd);
+            return _dvdContext.Atualizar(dvd);
         }
 
-        public void ExcluirDvd(int id)
+        public bool ExcluirDvd(int id)
         {
-            _dvdContext.Excluir(id);
+            if (id == 0)
+            {
+                throw new Exception("Não foi possível excluir este Dvd, ele não existe.");
+            }
+            return _dvdContext.Excluir(id);
         }
 
         public Usuario DetalharUsuarioDvd(int idDvd)

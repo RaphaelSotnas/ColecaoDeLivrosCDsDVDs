@@ -19,11 +19,11 @@ namespace ColecaoLivrosCDsDVDs.Servico.DVDs
             _emprestimoRepository = emprestimoRepository;
         }
 
-        public void Atualizar(DVD dvd)
+        public bool Atualizar(DVD dvd)
         {
             try
             {
-                _colecaoRepository.AtualizarDvd(dvd);
+                return _colecaoRepository.AtualizarDvd(dvd);
             }
             catch (Exception ex)
             {
@@ -43,11 +43,11 @@ namespace ColecaoLivrosCDsDVDs.Servico.DVDs
             }
         }
 
-        public void Cadastrar(DVD cd)
+        public bool Cadastrar(DVD cd)
         {
             try
             {
-                _colecaoRepository.CadastrarDvd(cd);
+                return _colecaoRepository.CadastrarDvd(cd);
             }
             catch (Exception ex)
             {
@@ -55,11 +55,11 @@ namespace ColecaoLivrosCDsDVDs.Servico.DVDs
             }
         }
 
-        public void EfetuarEmprestimoDvd(int idDvd)
+        public bool EfetuarEmprestimoDvd(int idDvd)
         {
             try
             {
-                _emprestimoRepository.EfetuarEmprestimoDvd(idDvd);
+                return _emprestimoRepository.EfetuarEmprestimoDvd(idDvd);
             }
             catch (Exception ex)
             {
@@ -67,11 +67,11 @@ namespace ColecaoLivrosCDsDVDs.Servico.DVDs
             }
         }
 
-        public void Excluir(int id)
+        public bool Excluir(int id)
         {
             try
             {
-                _colecaoRepository.ExcluirDvd(id);
+                return _colecaoRepository.ExcluirDvd(id);
             }
             catch (Exception ex)
             {

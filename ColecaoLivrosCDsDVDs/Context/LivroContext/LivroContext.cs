@@ -14,10 +14,11 @@ namespace ColecaoLivrosCDsDVDs.Context.LivroContext
             _aplicacaoContext = aplicacaoContext;
         }
 
-        public void Cadastrar(Livro livro)
+        public bool Cadastrar(Livro livro)
         {
             _aplicacaoContext.Livros.Add(livro);
             _aplicacaoContext.SaveChanges();
+            return true;
         }
 
         public Livro BuscarPorId(int id)
@@ -33,7 +34,7 @@ namespace ColecaoLivrosCDsDVDs.Context.LivroContext
                 .ToList();
         }
 
-        public void Atualizar(Livro livro)
+        public bool Atualizar(Livro livro)
         {
             var livroDoBanco = BuscarPorId(livro.Id);
 
@@ -41,6 +42,8 @@ namespace ColecaoLivrosCDsDVDs.Context.LivroContext
 
             _aplicacaoContext.Livros.Update(livroAtualizado);
             _aplicacaoContext.SaveChanges();
+
+            return true;
         }
 
         private Livro MapearParaLivroAtualizado(Livro livroDoBanco, Livro livro)
@@ -53,19 +56,22 @@ namespace ColecaoLivrosCDsDVDs.Context.LivroContext
             return livroDoBanco;
         }
 
-        public void Excluir(int id)
+        public bool Excluir(int id)
         {
             var livroExcluir = BuscarPorId(id);
 
             _aplicacaoContext.Livros.Remove(livroExcluir);
             _aplicacaoContext.SaveChanges();
+            return true;
         }
 
-        public void EfetuarEmprestimo(int id)
+        public bool EfetuarEmprestimo(int id)
         {
             var livroDoBanco = _aplicacaoContext.Livros.FirstOrDefault(x => x.Id == id);
             livroDoBanco.Status = Enum.Status.Indisponivel;
             _aplicacaoContext.SaveChanges();
+
+            return true;
         }
     }
 }

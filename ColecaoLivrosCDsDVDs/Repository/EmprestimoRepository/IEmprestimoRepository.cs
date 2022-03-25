@@ -8,8 +8,8 @@ namespace ColecaoLivrosCDsDVDs.Repository.EmprestimoRepository
 {
     public interface IEmprestimoRepository
     {
-        void EfetuarEmprestimoLivro(int idLivro);
-        void EfetuarEmprestimoCd(int idCd);
-        void EfetuarEmprestimoDvd(int idDvd);
+        bool EfetuarEmprestimoLivro(int idLivro);
+        bool EfetuarEmprestimoCd(int idCd);
+        bool EfetuarEmprestimoDvd(int idDvd);
     }
 }

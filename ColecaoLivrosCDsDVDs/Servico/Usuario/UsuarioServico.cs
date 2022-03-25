@@ -16,11 +16,11 @@ namespace ColecaoLivrosCDsDVDs.Servico
             _colecaoRepository = colecaoRepository;
         }
 
-        public void Cadastrar(Usuario usuario)
+        public bool Cadastrar(Usuario usuario)
         {
             try
             {
-                _colecaoRepository.CadastrarUsuario(usuario);
+                return _colecaoRepository.CadastrarUsuario(usuario);
             }
             catch (Exception ex)
             {
@@ -52,11 +52,11 @@ namespace ColecaoLivrosCDsDVDs.Servico
             }
         }
 
-        public void Atualizar(Usuario usuario)
+        public bool Atualizar(Usuario usuario)
         {
             try
             {
-                _colecaoRepository.AtualizarUsuario(usuario);
+                return _colecaoRepository.AtualizarUsuario(usuario);
             }
             catch (Exception ex)
             {
@@ -64,11 +64,11 @@ namespace ColecaoLivrosCDsDVDs.Servico
             }
         }
 
-        public void Excluir(int id)
+        public bool Excluir(int id)
         {
             try
             {
-                _colecaoRepository.ExcluirUsuario(id);
+                return _colecaoRepository.ExcluirUsuario(id);
             }
             catch (Exception ex)
             {
